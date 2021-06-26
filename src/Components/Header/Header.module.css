@@ -1,0 +1,23 @@
+.header {
+    border: 1px solid white;
+    color: white;
+    margin-left: 15rem;
+    width: calc(100% - 15rem - 2rem);
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+}
+
+.header ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.header li {
+    display: inline-block;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
