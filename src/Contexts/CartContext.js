@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const CartContext = React.createContext();
+const CartContext = React.createContext();
 
 function CartProvider({children}) {
   const [count, setCount] = useState(0);
@@ -14,4 +14,4 @@ function CartProvider({children}) {
   )
 }
 
-export {CartProvider};
+export {CartContext, CartProvider};
