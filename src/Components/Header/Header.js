@@ -1,6 +1,12 @@
 import styles from './Header.module.css';
 
+import React, {useContext} from 'react';
+import {CartContext} from '../../Contexts/CartContext.js';
+
 function Header() {
+
+    const context = React.useContext(CartContext);
+
     return (
         <nav className={styles.header}>
             <ul><li>search filters</li></ul>
@@ -9,7 +15,7 @@ function Header() {
                 <li>|</li>
                 <li>log in</li>
                 <li>|</li>
-                <li>items</li>
+                <li>items: {context.count}</li>
                 <li>|</li>
                 <li>total</li>
                 <li>|</li>

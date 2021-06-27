@@ -1,5 +1,7 @@
 import styles from './CoffeeSlot.module.css';
-import {useState} from 'react';
+import React, {useState} from 'react';
+
+import {CartContext} from '../../Contexts/CartContext.js'
 
 function CoffeeSlot(props) {
   const [hovered, setHovered] = useState(false);
@@ -7,6 +9,8 @@ function CoffeeSlot(props) {
   const hoverHandler = () => {
     setHovered(!hovered);
   }
+
+  const context = React.useContext(CartContext);
 
   return (
     <div
@@ -31,7 +35,10 @@ function CoffeeSlot(props) {
         </div>
         <div className={hovered ? styles.buttonDivHover : styles.buttonDiv}>
           <button>more info</button>
-          <button className={styles.toCart}>add to cart</button>
+          <button
+            className={styles.toCart}
+            onClick={context.increment}
+          >add to cart</button>
         </div>
       </div>
     </div>
