@@ -1,17 +1,17 @@
 import styles from './Coffee.module.css'
 import Header from '../../Components/Header/Header.js'
+import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.js'
 
 function CoffeePage() {
   const coffeeList = [];
   for (let i = 0; i < 15; i++) {
     coffeeList.push(
-      <div className={styles.coffeeSlot}>
-        <div className={styles.coffeeInfo}>
-          <div className={styles.coffeeName}>Coffee {i+1}</div>
-          <div>Ethiopia</div>
-          <div>£14</div>
-        </div>
-      </div>
+      <CoffeeSlot
+        name={`Coffee ${i+1}`}
+        origin='Ethiopia'
+        descriptors='Tea, Floral, Citrus'
+        price='£14'
+      />
     );
   }
 

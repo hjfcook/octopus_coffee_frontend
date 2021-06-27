@@ -5,37 +5,3 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
 }
-
-.coffeeSlot {
-  /* border: 1px solid white; */
-  width: 100%;
-  height: 100%;
-  /* background-color: rgb(127,127,127); */
-  background-color: white;
-  /* background-image: url('https://source.unsplash.com/PX1IrPsimHE');
-  background-size: cover; */
-  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.coffeeSlot::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
-}
-
-.coffeeInfo {
-  /* position: absolute; */
-  /* top: 0; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2rem;
-}
-
-.coffeeName {
-  font-size: 32px;
-}
