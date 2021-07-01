@@ -31,13 +31,17 @@ function CoffeeSlot(props) {
           {props.descriptors}
         </div>
         <div className={styles.coffeePrice}>
-          {props.price}
+          {`£${((props.price*100)/100).toFixed(2)}`}
+
         </div>
         <div className={hovered ? styles.buttonDivHover : styles.buttonDiv}>
           <button>more info</button>
           <button
             className={styles.toCart}
-            onClick={context.increment}
+            onClick={() => {
+              context.increment()
+              context.addCost(props.price)
+            }}
           >add to cart</button>
         </div>
       </div>

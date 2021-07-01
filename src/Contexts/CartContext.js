@@ -7,7 +7,13 @@ function CartProvider({children}) {
   const increment = () => {
     setCount(count + 1);
   }
-  const value = {count, increment}
+
+  const [cost, setCost] = useState(0);
+  const addCost = (price) => {
+    setCost(cost + price);
+  }
+
+  const value = {count, increment, cost, addCost}
 
   return (
     <CartContext.Provider value={value}>

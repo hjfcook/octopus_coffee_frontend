@@ -17,7 +17,7 @@ function Header() {
                 <li>|</li>
                 <li>items: {context.count}</li>
                 <li>|</li>
-                <li>total</li>
+                <li>total: {`£${((context.cost*100)/100).toFixed(2)}`}</li>
                 <li>|</li>
                 <li>my cart</li>
             </ul>

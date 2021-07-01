@@ -67,7 +67,7 @@ function CoffeePage() {
             name={product.name}
             origin={product.origin}
             descriptors={product.descriptors}
-            price={`£${((product.price*100)/100).toFixed(2)}`}
+            price={product.price}
           />
         ))}
       </div>
