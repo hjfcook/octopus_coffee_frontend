@@ -10,7 +10,9 @@ function CartProvider({children}) {
   const value = {count, increment}
 
   return (
-    <CartContext.Provider value={value}>{children}</CartContext.Provider>
+    <CartContext.Provider value={value}>
+      {children}
+    </CartContext.Provider>
   )
 }
 
