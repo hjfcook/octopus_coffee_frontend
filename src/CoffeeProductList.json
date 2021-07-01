@@ -1,0 +1,93 @@
+[
+  {
+    "uid": 1,
+    "name": "Bulessa",
+    "origin": "Ethiopia",
+    "descriptors": "Black tea, lemon, malted biscuit",
+    "price": 7.5
+  }, {
+    "uid": 2,
+    "name": "Trapiche",
+    "origin": "Bolivia",
+    "descriptors": "Dark toffee, chocolate, red apple",
+    "price": 8.5
+  }, {
+    "uid": 3,
+    "name": "Ana Sora",
+    "origin": "Ethiopia",
+    "descriptors": "Floral, blueberry, dark chocolate",
+    "price": 8
+  }, {
+    "uid": 4,
+    "name": "Kiriga AA",
+    "origin": "Kenya",
+    "descriptors": "Blackcurrant, green apple, treacle",
+    "price": 9
+  }, {
+    "uid": 5,
+    "name": "Kirundo",
+    "origin": "Burundi",
+    "descriptors": "Pear, plum, lemon",
+    "price": 8
+  }, {
+    "uid": 6,
+    "name": "Tegu AA",
+    "origin": "Kenya",
+    "descriptors": "Blackcurrant, nectarine, golden sugar",
+    "price": 7.5
+  }, {
+    "uid": 7,
+    "name": "Uraga",
+    "origin": "Ethiopia",
+    "descriptors": "Plum, hibiscus, cloudberry",
+    "price": 9.5
+  }, {
+    "uid": 8,
+    "name": "Don Carlos",
+    "origin": "Bolivia",
+    "descriptors": "Chocolate, cream, green apple",
+    "price": 8.5
+  }, {
+    "uid": 9,
+    "name": "Musaba Mbilima",
+    "origin": "Rwanda",
+    "descriptors": "Citrus, butterscotch, chocolate",
+    "price": 9.5
+  }, {
+    "uid": 10,
+    "name": "El Bosque",
+    "origin": "Guatemala",
+    "descriptors": "Hazlenut, caramel, red apple",
+    "price": 7.5
+  }, {
+    "uid": 11,
+    "name": "Mama Mina",
+    "origin": "Nicaragua",
+    "descriptors": "Chocolate, peach, sultanas",
+    "price": 7
+  }, {
+    "uid": 12,
+    "name": "Las Delicias",
+    "origin": "Nicaragua",
+    "descriptors": "Chocolate, lime, red apple",
+    "price": 7.5
+  }, {
+    "uid": 13,
+    "name": "Las Brumas",
+    "origin": "El Salvador",
+    "descriptors": "Clementines, passion fruit, orange",
+    "price": 9
+  }, {
+    "uid": 14,
+    "name": "Licho Honey",
+    "origin": "Costa Rica",
+    "descriptors": "Mango, floral, plums",
+    "price": 10
+  }, {
+    "uid": 15,
+    "name": "Tono",
+    "origin": "Costa Rica",
+    "descriptors": "Plum, cream, cranberry",
+    "price": 8.5
+  }
+]

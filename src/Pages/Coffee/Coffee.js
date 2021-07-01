@@ -1,6 +1,11 @@
-import styles from './Coffee.module.css'
-import Header from '../../Components/Header/Header.js'
-import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.js'
+import styles from './Coffee.module.css';
+import Header from '../../Components/Header/Header.js';
+import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.js';
+import {useState, useEffect} from 'react';
+
+import jsonData from '../../CoffeeProductList.json';
+// import jsonData from '/home/henry/Documents/Projects/coffee_roasters/CoffeeProductList.json';
+// console.log(jsonData);
 
 // function CoffeePage() {
 //   const coffeeList = [];
@@ -26,19 +31,45 @@ import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.js'
 //   );
 // }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function testFetch(file) {
+  await sleep(1500);
+  // const data = await fetch(file)
+  const data = jsonData;
+  return data
+}
+
 function CoffeePage() {
-  const coffeeList = [];
-  for (let i = 0; i < 12; i++) {
-    coffeeList.push(
-      <CoffeeSlot />
-    );
-  }
+  const [coffeeProducts, setCoffeeProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      setIsLoading(true);
+      const data = await testFetch('../../../CoffeeProductList.json');
+      console.log(data);
+      setCoffeeProducts(data);
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div>
       <Header />
       <div className={styles.coffeeSelection}>
-        {coffeeList}
+        {isLoading? <div>loading...</div> :
+        coffeeProducts.map(product => (
+          <CoffeeSlot
+            name={product.name}
+            origin={product.origin}
+            descriptors={product.descriptors}
+            price={`£${((product.price*100)/100).toFixed(2)}`}
+          />
+        ))}
       </div>
       <div>footer</div>
     </div>
