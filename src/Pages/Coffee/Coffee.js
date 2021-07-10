@@ -61,7 +61,7 @@ function CoffeePage() {
     <div>
       <Header />
       <div className={styles.coffeeSelection}>
-        {isLoading? <div>loading...</div> :
+        {isLoading? <div className={styles.loading}>loading...</div> :
         coffeeProducts.map(product => (
           <CoffeeSlot
             name={product.name}

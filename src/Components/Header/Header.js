@@ -9,7 +9,10 @@ function Header() {
 
     return (
         <nav className={styles.header}>
-            <ul><li>search filters</li></ul>
+            <ul>
+              <li>sort ▼</li>
+              <li>filter ▼</li>
+            </ul>
             <ul>
                 <li>sign up</li>
                 <li>|</li>

@@ -5,3 +5,25 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
 }
+
+/* .loading {
+  height: calc(100% - 4.5rem);
+  width: calc(100% - 17rem);
+  position: absolute;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.loading {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 46;
+  /* background-color: red; */
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
