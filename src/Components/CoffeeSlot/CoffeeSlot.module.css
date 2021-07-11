@@ -60,6 +60,7 @@
 }
 
 .infoHovered {
+  /* transform: translateY(-30px); */
   margin-top: 0;
   gap: 1.5rem;
 }
@@ -68,6 +69,18 @@
   background-image: url('https://source.unsplash.com/PX1IrPsimHE');
   background-size: cover;
   color: white;
+}
+
+.buttonDiv button {
+  width: 5rem;
+  height: 1.7rem;
+  border: none;
+  border-radius: 2px;
+  /* background-color: white; */
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  border: 1px solid black;
 }
 
 .buttonDivHover button {

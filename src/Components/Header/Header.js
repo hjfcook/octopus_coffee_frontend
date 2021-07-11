@@ -5,29 +5,29 @@ import {CartContext} from '../../Contexts/CartContext.js';
 
 import Dropdown from '../Dropdown/Dropdown.js';
 
-function Header() {
+function Header(props) {
 
-    const context = React.useContext(CartContext);
+  const context = React.useContext(CartContext);
 
-    return (
-        <nav className={styles.header}>
-            <ul>
-              <Dropdown name='sort' />
-              <Dropdown name='filter' />
-            </ul>
-            <ul>
-                <li>sign up</li>
-                <li>|</li>
-                <li>log in</li>
-                <li>|</li>
-                <li>items: {context.count}</li>
-                <li>|</li>
-                <li>total: {`£${((context.cost*100)/100).toFixed(2)}`}</li>
-                <li>|</li>
-                <li>my cart</li>
-            </ul>
-        </nav>
-    )
+  return (
+    <nav className={styles.header}>
+      <ul>
+        <Dropdown name='sort' sortOptions={props.sortOptions}/>
+        <Dropdown name='filter' />
+      </ul>
+      <ul>
+        <li>sign up</li>
+        <li>|</li>
+        <li>log in</li>
+        <li>|</li>
+        <li>items: {context.count}</li>
+        <li>|</li>
+        <li>total: {`£${((context.cost*100)/100).toFixed(2)}`}</li>
+        <li>|</li>
+        <li>my cart</li>
+      </ul>
+    </nav>
+  )
 }
 
 export default Header;

@@ -4,32 +4,6 @@ import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.js';
 import {useState, useEffect} from 'react';
 
 import jsonData from '../../CoffeeProductList.json';
-// import jsonData from '/home/henry/Documents/Projects/coffee_roasters/CoffeeProductList.json';
-// console.log(jsonData);
-
-// function CoffeePage() {
-//   const coffeeList = [];
-//   for (let i = 0; i < 15; i++) {
-//     coffeeList.push(
-//       <CoffeeSlot
-//         name={`Coffee ${i+1}`}
-//         origin='Ethiopia'
-//         descriptors='Tea, Floral, Citrus'
-//         price='£14'
-//       />
-//     );
-//   }
-//
-//   return (
-//     <div>
-//       <Header />
-//       <div className={styles.coffeeSelection}>
-//         {coffeeList}
-//       </div>
-//       <div>footer</div>
-//     </div>
-//   );
-// }
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -57,9 +31,49 @@ function CoffeePage() {
     fetchData();
   }, []);
 
+  function productSort(attribute, direction) {
+    function comparison(a, b) {
+      if (a[attribute] < b[attribute]){
+        return direction === 'ascending' ? -1 : 1;
+      }
+      if (a[attribute] > b[attribute]){
+        return direction === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    }
+
+    let sortedProducts = [...coffeeProducts];
+    sortedProducts.sort(comparison);
+    setCoffeeProducts(sortedProducts);
+  }
+
+  function sortAToZ() {
+    productSort('name', 'ascending');
+  }
+
+  function sortZToA() {
+    productSort('name', 'descending');
+  }
+
+  function sortLowToHigh() {
+    productSort('price', 'ascending');
+  }
+
+  function sortHighToLow() {
+    productSort('price', 'descending');
+  }
+
+  const sortOptions = [
+    {text: 'Name (A - Z)', action: sortAToZ},
+    {text: 'Name (Z - A)', action: sortZToA},
+    {text: 'Price (low to high)', action: sortLowToHigh},
+    {text: 'Price (low to high)', action: sortHighToLow}
+  ]
+
   return (
     <div>
-      <Header />
+      <Header sortOptions={[sortAToZ, sortZToA, sortLowToHigh, sortHighToLow]}/>
+      {/*<Header sortOptions={sortOptions}/>*/}
       <div className={styles.coffeeSelection}>
         {isLoading? <div className={styles.loading}>loading...</div> :
         coffeeProducts.map(product => (

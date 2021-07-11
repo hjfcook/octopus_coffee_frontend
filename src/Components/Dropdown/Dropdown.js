@@ -16,10 +16,10 @@ function Dropdown(props) {
       {active ?
       <div className={styles.dropdown}>
         <div className={styles.test}>
-          <button>Name (A-Z)</button>
-          <button>Name (Z-A)</button>
-          <button>Price (low to high)</button>
-          <button>Price (high to low)</button>
+          <button onClick={props.sortOptions[0]}>Name (A-Z)</button>
+          <button onClick={props.sortOptions[1]}>Name (Z-A)</button>
+          <button onClick={props.sortOptions[2]}>Price (low to high)</button>
+          <button onClick={props.sortOptions[3]}>Price (high to low)</button>
         </div>
       </div>
       : null}
