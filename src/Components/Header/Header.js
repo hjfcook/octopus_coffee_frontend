@@ -3,6 +3,8 @@ import styles from './Header.module.css';
 import React, {useContext} from 'react';
 import {CartContext} from '../../Contexts/CartContext.js';
 
+import Dropdown from '../Dropdown/Dropdown.js';
+
 function Header() {
 
     const context = React.useContext(CartContext);
@@ -10,8 +12,8 @@ function Header() {
     return (
         <nav className={styles.header}>
             <ul>
-              <li>sort ▼</li>
-              <li>filter ▼</li>
+              <Dropdown name='sort' />
+              <Dropdown name='filter' />
             </ul>
             <ul>
                 <li>sign up</li>
