@@ -13,7 +13,7 @@ function Header(props) {
     <nav className={styles.header}>
       <ul>
         <Dropdown name='sort' sortOptions={props.sortOptions}/>
-        <Dropdown name='filter' />
+        <Dropdown name='filter' sortOptions={props.sortOptions}/>
       </ul>
       <ul>
         <li>sign up</li>

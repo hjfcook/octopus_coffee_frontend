@@ -16,10 +16,9 @@ function Dropdown(props) {
       {active ?
       <div className={styles.dropdown}>
         <div className={styles.test}>
-          <button onClick={props.sortOptions[0]}>Name (A-Z)</button>
-          <button onClick={props.sortOptions[1]}>Name (Z-A)</button>
-          <button onClick={props.sortOptions[2]}>Price (low to high)</button>
-          <button onClick={props.sortOptions[3]}>Price (high to low)</button>
+          {props.sortOptions.map(option => (
+            <button onClick={option.action}>{option.text}</button>
+          ))}
         </div>
       </div>
       : null}

@@ -1,6 +1,7 @@
 import styles from './Coffee.module.css';
 import Header from '../../Components/Header/Header.js';
 import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.js';
+import Footer from '../../Components/Footer/Footer.js';
 import {useState, useEffect} from 'react';
 
 import jsonData from '../../CoffeeProductList.json';
@@ -67,13 +68,12 @@ function CoffeePage() {
     {text: 'Name (A - Z)', action: sortAToZ},
     {text: 'Name (Z - A)', action: sortZToA},
     {text: 'Price (low to high)', action: sortLowToHigh},
-    {text: 'Price (low to high)', action: sortHighToLow}
+    {text: 'Price (high to low)', action: sortHighToLow}
   ]
 
   return (
     <div>
-      <Header sortOptions={[sortAToZ, sortZToA, sortLowToHigh, sortHighToLow]}/>
-      {/*<Header sortOptions={sortOptions}/>*/}
+      <Header sortOptions={sortOptions}/>
       <div className={styles.coffeeSelection}>
         {isLoading? <div className={styles.loading}>loading...</div> :
         coffeeProducts.map(product => (
@@ -85,7 +85,7 @@ function CoffeePage() {
           />
         ))}
       </div>
-      <div>footer</div>
+      <Footer />
     </div>
   );
 }
