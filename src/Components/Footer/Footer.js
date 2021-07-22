@@ -22,25 +22,33 @@ function Footer() {
           </li>
         </ul>
       </div>
-      <div className={styles.section}>
-        <div>
+      <div className={[styles.section, styles.middleSection].join(' ')}>
+        <div className={styles.socialMedia}>
           <FontAwesomeIcon
             icon={faFacebook}
+            className={styles.icon}
           />
           <FontAwesomeIcon
             icon={faInstagram}
+            className={styles.icon}
           />
           <FontAwesomeIcon
             icon={faTwitter}
+            className={styles.icon}
           />
           <FontAwesomeIcon
             icon={faYoutube}
+            className={styles.icon}
           />
         </div>
-        <div>
-          copyright
-          privacy policy
-        </div>
+        <ul>
+          <li>
+            &copy; Copyright 2021
+          </li>
+          <li>
+            privacy policy
+          </li>
+        </ul>
       </div>
       <div className={styles.section}>
         <h3>Sign up to our newsletter!</h3>

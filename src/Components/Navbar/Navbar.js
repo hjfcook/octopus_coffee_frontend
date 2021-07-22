@@ -3,6 +3,8 @@ import {
   Link,
   useRouteMatch
 } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 function MenuLink({ label, to, activeOnlyWhenExact }) {
   let match = useRouteMatch({
@@ -16,15 +18,15 @@ function MenuLink({ label, to, activeOnlyWhenExact }) {
 function Navbar() {
   return (
     <div className={styles.sidebar}>
-      <img 
-        src="https://cdn.shopify.com/s/files/1/0017/1562/t/18/assets/sqmile-img-logo-transparent@2x@2x.png?v=1623381581665049233" 
-        alt="Square Mile Coffee Roasters" 
-        width="130" 
+      <img
+        src="https://cdn.shopify.com/s/files/1/0017/1562/t/18/assets/sqmile-img-logo-transparent@2x@2x.png?v=1623381581665049233"
+        alt="Square Mile Coffee Roasters"
+        width="130"
         height="152">
       </img>
       <nav>
           <ul>
-            <li><MenuLink activeOnlyWhenExact={true} to="/" label='coffee' /></li>  
+            <li><MenuLink activeOnlyWhenExact={true} to="/" label='coffee' /></li>
             <li><MenuLink to="/subscriptions" label="subscriptions" /></li>
             <li><MenuLink to="/equipment" label="equipment" /></li>
             <li><MenuLink to="/merchandise" label="merchandise" /></li>
@@ -33,7 +35,12 @@ function Navbar() {
             <li><MenuLink to="/about" label="about" /></li>
           </ul>
       </nav>
-      <p>shpongledspores</p>
+      <p>
+        <FontAwesomeIcon
+          icon={faGithub}
+        />
+        &nbsp; shpongledspores
+      </p>
     </div>
   );
 }
