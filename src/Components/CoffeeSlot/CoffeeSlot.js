@@ -3,6 +3,24 @@ import React, {useState} from 'react';
 
 import {CartContext} from '../../Contexts/CartContext.js'
 
+
+
+// import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+const LinkButton = (props) => {
+  const history = useHistory();
+  const handleClick = () => history.push(props.url);
+
+  return (
+    <button type="button" onClick={handleClick}>
+      more info
+    </button>
+  );
+};
+
+
+
 function CoffeeSlot(props) {
   const [hovered, setHovered] = useState(false);
 
@@ -35,7 +53,7 @@ function CoffeeSlot(props) {
 
         </div>
         <div className={hovered ? styles.buttonDivHover : styles.buttonDiv}>
-          <button>more info</button>
+          <LinkButton url={props.name.toLowerCase().replace(/ /g, '-')}/>
           <button
             className={styles.toCart}
             onClick={() => {
