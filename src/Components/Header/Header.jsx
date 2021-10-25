@@ -1,9 +1,9 @@
 import styles from './Header.module.css';
 
 import React, {useContext} from 'react';
-import {CartContext} from '../../Contexts/CartContext.js';
+import {CartContext} from '../../Contexts/CartContext.jsx';
 
-import Dropdown from '../Dropdown/Dropdown.js';
+import Dropdown from '../Dropdown/Dropdown.jsx';
 
 function Header(props) {
 

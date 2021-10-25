@@ -1,7 +1,7 @@
 import styles from './CoffeeSlot.module.css';
 import React, {useState} from 'react';
 
-import {CartContext} from '../../Contexts/CartContext.js'
+import {CartContext} from '../../Contexts/CartContext.jsx'
 
 
 

@@ -5,10 +5,10 @@ import {
   Route,
   //Link
 } from "react-router-dom";
-import Navbar from './Components/Navbar/Navbar.js'
-import CoffeePage from './Pages/Coffee/Coffee';
+import Navbar from './Components/Navbar/Navbar.jsx'
+import CoffeePage from './Pages/Coffee/Coffee.jsx';
 
-import {CartProvider} from './Contexts/CartContext.js';
+import {CartProvider} from './Contexts/CartContext.jsx';
 
 function App() {
   return (
