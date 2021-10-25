@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   //Link
+  Redirect
 } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar.jsx'
 import CoffeePage from './Pages/Coffee/Coffee.jsx';
@@ -18,7 +19,9 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path="/">
-              {/* <h1 style={{color: 'white', margin: 0}}>coffee</h1> */}
+              <Redirect to="/coffee" />
+            </Route>
+            <Route path="/coffee">
               <CoffeePage />
             </Route>
             <Route path='/subscriptions'>
@@ -39,6 +42,9 @@ function App() {
             <Route path='/about'>
               <h1 style={{color: 'white', margin: 0}}>about</h1>
             </Route>
+            {/* <Route path='/trapiche'>
+              <h1 style={{color: 'white', margin: 0}}>trapiche</h1>
+            </Route> */}
           </Switch>
         </div>
       </Router>

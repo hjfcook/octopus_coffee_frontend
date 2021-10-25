@@ -26,7 +26,7 @@ function Navbar() {
       </img>
       <nav>
           <ul>
-            <li><MenuLink activeOnlyWhenExact={true} to="/" label='coffee' /></li>
+            <li><MenuLink activeOnlyWhenExact={true} to="/coffee" label='coffee' /></li>
             <li><MenuLink to="/subscriptions" label="subscriptions" /></li>
             <li><MenuLink to="/equipment" label="equipment" /></li>
             <li><MenuLink to="/merchandise" label="merchandise" /></li>

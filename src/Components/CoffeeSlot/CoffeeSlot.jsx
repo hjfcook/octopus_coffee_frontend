@@ -10,7 +10,8 @@ import { useHistory } from 'react-router-dom';
 
 const LinkButton = (props) => {
   const history = useHistory();
-  const handleClick = () => history.push(props.url);
+  // const handleClick = () => history.push(props.url);
+  const handleClick = () => history.push('coffee/' + props.url);
 
   return (
     <button type="button" onClick={handleClick}>

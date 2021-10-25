@@ -1,19 +1,26 @@
 import styles from './Header.module.css';
 
-import React, {useContext} from 'react';
+// import React, {useContext} from 'react';
+// import React from 'react';
+import {useContext} from 'react';
 import {CartContext} from '../../Contexts/CartContext.jsx';
 
 import Dropdown from '../Dropdown/Dropdown.jsx';
 
 function Header(props) {
 
-  const context = React.useContext(CartContext);
+  // const context = React.useContext(CartContext);
+  const context = useContext(CartContext);
 
   return (
     <nav className={styles.header}>
       <ul>
-        <Dropdown name='sort' sortOptions={props.sortOptions}/>
-        <Dropdown name='filter' sortOptions={props.sortOptions}/>
+        {props.filterOptions ?
+        <Dropdown name='view' sortOptions={props.filterOptions} type='submenu'/>
+        : null}
+        {props.sortOptions ?
+        <Dropdown name='sort' sortOptions={props.sortOptions} type='menu'/>
+        : null}
       </ul>
       <ul>
         <li>sign up</li>
