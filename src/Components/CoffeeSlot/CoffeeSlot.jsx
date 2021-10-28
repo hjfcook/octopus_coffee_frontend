@@ -5,13 +5,11 @@ import {CartContext} from '../../Contexts/CartContext.jsx'
 
 
 
-// import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 
 const LinkButton = (props) => {
   const history = useHistory();
-  // const handleClick = () => history.push(props.url);
-  const handleClick = () => history.push('coffee/' + props.url);
+  const handleClick = () => history.push(props.url);
 
   return (
     <button type="button" onClick={handleClick}>
@@ -40,26 +38,25 @@ function CoffeeSlot(props) {
       <div className={styles.coffeeInfo + ` ${hovered ? styles.infoHovered : ''}`}>
         <div>
           <div className={styles.coffeeName}>
-            {props.name}
+            {props.coffee.name}
           </div>
           <div className={styles.coffeeOrigin}>
-            {props.origin}
+            {props.coffee.origin}
           </div>
         </div>
         <div className={styles.coffeeDescriptors}>
-          {props.descriptors}
+          {props.coffee.descriptors.join(', ')}
         </div>
         <div className={styles.coffeePrice}>
-          {`£${((props.price*100)/100).toFixed(2)}`}
+          {`£${((props.coffee.price*100)/100).toFixed(2)}`}
 
         </div>
         <div className={hovered ? styles.buttonDivHover : styles.buttonDiv}>
-          <LinkButton url={props.name.toLowerCase().replace(/ /g, '-')}/>
+          <LinkButton url={'coffee/' + props.coffee.name.toLowerCase().replace(/ /g, '-')}/>
           <button
             className={styles.toCart}
             onClick={() => {
-              context.increment()
-              context.addCost(props.price)
+              context.addToCart(props.coffee, 1)
             }}
           >add to cart</button>
         </div>

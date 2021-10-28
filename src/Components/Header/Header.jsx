@@ -1,7 +1,6 @@
 import styles from './Header.module.css';
 
-// import React, {useContext} from 'react';
-// import React from 'react';
+import {Link} from 'react-router-dom';
 import {useContext} from 'react';
 import {CartContext} from '../../Contexts/CartContext.jsx';
 
@@ -9,8 +8,17 @@ import Dropdown from '../Dropdown/Dropdown.jsx';
 
 function Header(props) {
 
-  // const context = React.useContext(CartContext);
   const context = useContext(CartContext);
+
+  let items = 0;
+  if (context.cart.length > 0) {
+    items = context.cart.map(item => item.quantity).reduce((prev, curr) => prev + curr);
+  }
+
+  let total = 0;
+  if (context.cart.length > 0) {
+    total = context.cart.map(item => item.price * item.quantity).reduce((prev, curr) => prev + curr);
+  }
 
   return (
     <nav className={styles.header}>
@@ -27,11 +35,11 @@ function Header(props) {
         <li>|</li>
         <li>log in</li>
         <li>|</li>
-        <li>items: {context.count}</li>
+        <li>items: {items}</li>
         <li>|</li>
-        <li>total: {`£${((context.cost*100)/100).toFixed(2)}`}</li>
+        <li>total: {`£${((total*100)/100).toFixed(2)}`}</li>
         <li>|</li>
-        <li>my cart</li>
+        <li><Link to='/cart'>your cart</Link></li>
       </ul>
     </nav>
   )

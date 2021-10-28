@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar.jsx'
 import CoffeePage from './Pages/Coffee/Coffee.jsx';
+import CartPage from './Pages/Cart/Cart.jsx';
 
 import {CartProvider} from './Contexts/CartContext.jsx';
 
@@ -42,9 +43,9 @@ function App() {
             <Route path='/about'>
               <h1 style={{color: 'white', margin: 0}}>about</h1>
             </Route>
-            {/* <Route path='/trapiche'>
-              <h1 style={{color: 'white', margin: 0}}>trapiche</h1>
-            </Route> */}
+            <Route path='/cart'>
+              <CartPage />
+            </Route>
           </Switch>
         </div>
       </Router>
@@ -53,11 +54,3 @@ function App() {
 }
 
 export default App;
-
-
-{/* <Navbar />
-<CoffeePage>
-  <StatusBar />
-  <Products />
-  <Footer />
-</CoffeePage> */}

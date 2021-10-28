@@ -87,3 +87,7 @@
 .icon {
   font-size: 1.5rem;
 }
+
+.icon:hover {
+  color: #02a3c0;
+}

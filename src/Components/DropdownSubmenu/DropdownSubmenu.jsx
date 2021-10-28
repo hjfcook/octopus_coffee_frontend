@@ -18,7 +18,6 @@ function DropdownSubmenu(props) {
       <div className={styles.dropdownSubmenu}>
         <div className={styles.test}>
           {props.subOptions.map(option => (
-            // <button key={option.text} onClick={option.action}>{option.text}</button>
             <button key={option} onClick={() => {props.action(props.name, option)}}>{option}</button>
           ))}
         </div>

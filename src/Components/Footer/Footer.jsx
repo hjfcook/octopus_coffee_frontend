@@ -64,7 +64,7 @@ function Footer() {
           />
           <input
             type='button'
-            value='Subscribe'
+            value='subscribe'
             className={styles.signupButton}
             aria-label='subscribe'
           />
