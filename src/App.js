@@ -6,11 +6,12 @@ import {
   //Link
   Redirect
 } from "react-router-dom";
-import Navbar from './Components/Navbar/Navbar.jsx'
-import CoffeePage from './Pages/Coffee/Coffee.jsx';
-import CartPage from './Pages/Cart/Cart.jsx';
+import Navbar from './Components/Navbar/Navbar'
+import CoffeePage from './Pages/Coffee/Coffee';
+import CartPage from './Pages/Cart/Cart';
+import AuthTest from './Pages/AuthTest/AuthTest';
 
-import {CartProvider} from './Contexts/CartContext.jsx';
+import {CartProvider} from './Contexts/CartContext';
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
             </Route>
             <Route path='/cart'>
               <CartPage />
+            </Route>
+            <Route path='/authtest'>
+              <AuthTest />
             </Route>
           </Switch>
         </div>

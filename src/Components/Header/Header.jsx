@@ -33,7 +33,8 @@ function Header(props) {
       <ul>
         <li>sign up</li>
         <li>|</li>
-        <li>log in</li>
+        {/* <li>log in</li> */}
+        <li><Link to='/authtest'>log in</Link></li>
         <li>|</li>
         <li>items: {items}</li>
         <li>|</li>
