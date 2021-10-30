@@ -2,13 +2,17 @@ import styles from './Header.module.css';
 
 import {Link} from 'react-router-dom';
 import {useContext} from 'react';
-import {CartContext} from '../../Contexts/CartContext.jsx';
+import {CartContext} from '../../Contexts/CartContext';
 
-import Dropdown from '../Dropdown/Dropdown.jsx';
+import {UserContext} from '../../Contexts/UserContext';
+
+import Dropdown from '../Dropdown/Dropdown';
+
 
 function Header(props) {
 
   const context = useContext(CartContext);
+  const userTest = useContext(UserContext);
 
   let items = 0;
   if (context.cart.length > 0) {
@@ -31,6 +35,9 @@ function Header(props) {
         : null}
       </ul>
       <ul>
+        {/* <li>{userTest.username}</li> */}
+        <li>{JSON.stringify(userTest)}</li>
+        <li>|</li>
         <li>sign up</li>
         <li>|</li>
         {/* <li>log in</li> */}

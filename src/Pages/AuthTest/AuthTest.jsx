@@ -1,12 +1,18 @@
 import styles from './AuthTest.module.css';
 import React, { useState } from "react";
 
+import {UserContext} from '../../Contexts/UserContext'
+
+import Header from '../../Components/Header/Header.jsx';
+
 function AuthTest() {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [data, setData] = useState(null);
+
+  const userTest = React.useContext(UserContext);
 
   const register = () => {
     fetch("http://localhost:3000/register", {
@@ -30,7 +36,15 @@ function AuthTest() {
       }),
       credentials: 'include'
     }).then((res) => res.text())
-      .then(res => console.log(res));
+      .then(res => {
+        console.log(res)
+        userTest.setLoggedIn(true);
+      });
+    // }).then(res => res.json())
+    //   .then((res) => {
+    //   console.log(res);
+    //   userTest.setUser(res);
+    // })
   };
   const getUser = () => {
     fetch("http://localhost:3000/user", {
@@ -43,9 +57,23 @@ function AuthTest() {
         console.log(res)
       });
   };
+  const logout = () => {
+    fetch("http://localhost:3000/logout", {
+      method: "GET",
+      headers: {'Content-Type': 'application/json'},
+      credentials: 'include'
+    }).then((res) => res.json())
+      .then(res => {
+        console.log(res)
+        if (res.loggedOut) {
+          userTest.setLoggedIn(false);
+        }
+      });
+  };
 
   return (
     <div className="AuthTest">
+      <Header />
       <div>
         <h1>Register</h1>
         <input
@@ -76,6 +104,7 @@ function AuthTest() {
         <h1>Get User</h1>
         <button onClick={getUser}>Submit</button>
         {data ? <h1>Welcome Back {data.username}</h1> : null}
+        <button onClick={logout}>Log out</button>
       </div>
     </div>
   );
