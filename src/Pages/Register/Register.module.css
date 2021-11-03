@@ -1,0 +1,80 @@
+.registerPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: auto;
+}
+
+.registerBlock {
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/webb.png");
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 5rem 3rem 5rem;
+}
+
+.registerBlock form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  margin: 4rem auto 2rem auto;
+  /* width: 100%; */
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgb(173, 173, 173);
+  border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.registerBlock fieldset {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* width: 100%; */
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.registerBlock label {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.registerBlock input {
+  height: 1.7rem;
+  /* width: 50%; */
+  width: 300px;
+}
+
+.buttonDiv {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.registerBlock button {
+  width: 5rem;
+  height: 1.7rem;
+  border: none;
+  border-radius: 2px;
+  border: 1px solid black;
+  margin-left: 0.5rem;
+  background-color: #02a3c0;
+  color: white;
+}
+
+.registerBlock button:hover {
+  transform: scale(1.1);
+}
+
+.registerBlock button:active {
+  transform: scale(1);
+}

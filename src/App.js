@@ -9,7 +9,9 @@ import {
 import Navbar from './Components/Navbar/Navbar'
 import CoffeePage from './Pages/Coffee/Coffee';
 import CartPage from './Pages/Cart/Cart';
-import AuthTest from './Pages/AuthTest/AuthTest';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import Account from './Pages/Account/Account';
 
 import {UserProvider} from './Contexts/UserContext';
 import {CartProvider} from './Contexts/CartContext';
@@ -49,8 +51,14 @@ function App() {
               <Route path='/cart'>
                 <CartPage />
               </Route>
-              <Route path='/authtest'>
-                <AuthTest />
+              <Route path='/login'>
+                <Login />
+              </Route>
+              <Route path='/register'>
+                <Register />
+              </Route>
+              <Route path='/account'>
+                <Account />
               </Route>
             </Switch>
           </div>
