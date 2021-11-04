@@ -10,6 +10,7 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 function Admin() {
   const [coffeeProducts, setCoffeeProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sorting, setSorting] = useState({field: null, ascending: false});
 
   useEffect(() => {
     const fetchData = async() => {
@@ -20,6 +21,46 @@ function Admin() {
     };
     fetchData();
   }, []);
+
+  function productSort(attribute, direction) {
+    function comparison(a, b) {
+      if (a[attribute] < b[attribute]){
+        return direction === 'ascending' ? -1 : 1;
+      }
+      if (a[attribute] > b[attribute]){
+        return direction === 'ascending' ? 1 : -1;
+      }
+      return 0;
+    }
+
+    let sortedProducts = [...coffeeProducts];
+    sortedProducts.sort(comparison);
+    setCoffeeProducts(sortedProducts);
+  }
+
+  function updateSortingField(field) {
+    if (sorting.field === field) {
+      setSorting(prevSorting => ({field: field, ascending: !prevSorting.ascending}));
+    } else {
+      setSorting({field: field, ascending: true});
+    }
+  }
+
+  useEffect(() => {
+    productSort(sorting.field, sorting.ascending ? 'ascending' : 'descending');
+  }, [sorting]);
+
+  function selectSymbol(field) {
+    if (sorting.field === field) {
+      if (sorting.ascending) {
+        return '▲';
+      } else {
+        return '▼';
+      }
+    } else {
+      return ''
+    }
+  }
 
   return (
     <div className={styles.adminPage}>
@@ -33,10 +74,10 @@ function Admin() {
           <table>
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Process</th>
-                <th>Price</th>
+                <th onClick={() => {updateSortingField('name')}}>Name {selectSymbol('name')}</th>
+                <th onClick={() => {updateSortingField('country')}}>Country {selectSymbol('country')}</th>
+                <th onClick={() => {updateSortingField('process')}}>Process {selectSymbol('process')}</th>
+                <th onClick={() => {updateSortingField('price')}}>Price {selectSymbol('price')}</th>
                 <th></th>
               </tr>
             </thead>
