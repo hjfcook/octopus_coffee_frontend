@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-// import logo from '../../Images/logo.png';
+import logo from '../../Images/logo.png';
 
 function MenuLink({ label, to, activeOnlyWhenExact }) {
   let match = useRouteMatch({
@@ -20,13 +20,14 @@ function Navbar() {
   return (
     <div className={styles.sidebar}>
       <img
-        src="https://cdn.shopify.com/s/files/1/0017/1562/t/18/assets/sqmile-img-logo-transparent@2x@2x.png?v=1623381581665049233"
-        // src={logo}
+        // src="https://cdn.shopify.com/s/files/1/0017/1562/t/18/assets/sqmile-img-logo-transparent@2x@2x.png?v=1623381581665049233"
+        src={logo}
         alt="Square Mile Coffee Roasters"
+        // width="130"
+        // height="152"
         width="130"
-        height="152">
-        {/* width="180"
-        height="180"> */}
+        // height="160"
+        >
       </img>
       <nav>
           <ul>

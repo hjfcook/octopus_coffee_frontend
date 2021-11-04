@@ -1,0 +1,111 @@
+.adminPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: auto;
+}
+
+.adminBlock {
+  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/webb.png");
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+  /* width: 700px; */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem 5rem 3rem 5rem;
+}
+
+.adminBlock table {
+  /* text-align: left; */
+
+  margin: 4rem auto 2rem auto;
+  table-layout: fixed;
+  width: 700px;
+  /* width: 100%; */
+  padding-left: 5rem;
+  padding-right: 5rem;
+
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  background: rgba(255, 255, 255, 0.5);
+  border-top: 1px solid rgb(173, 173, 173);
+  border-bottom: 1px solid rgb(173, 173, 173);
+}
+
+.adminBlock thead th {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  /* border-bottom: 1px solid black; */
+}
+
+.adminBlock tbody td {
+  padding-bottom: 0.5rem;
+
+  /* max-width: 120px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminBlock thead th:nth-child(1) {
+  width: 25%;
+  text-align: left;
+}
+
+.adminBlock thead th:nth-child(2) {
+  width: 25%;
+  text-align: left;
+}
+
+.adminBlock thead th:nth-child(3) {
+  width: 25%;
+  text-align: left;
+}
+
+.adminBlock  thead th:nth-child(4) {
+  width: 15%;
+  text-align: right;
+}
+
+.adminBlock  thead th:nth-child(5) {
+  width: 10%;
+  text-align: right;
+}
+
+.adminBlock  tbody td:nth-child(1) {
+  text-align: left;
+}
+
+.adminBlock  tbody td:nth-child(2) {
+  text-align: left;
+}
+
+.adminBlock  tbody td:nth-child(3) {
+  text-align: left;
+}
+
+.adminBlock  tbody td:nth-child(4) {
+  text-align: right;
+}
+
+.adminBlock  tbody td:nth-child(5) {
+  text-align: right;
+}
+
+.buttonDiv {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.adminBlock button {
+  width: 5rem;
+  height: 1.7rem;
+  border: none;
+  border-radius: 2px;
+  border: 1px solid black;
+  margin-left: 0.5rem;
+  background-color: #02a3c0;
+  color: white;
+}

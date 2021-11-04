@@ -8,17 +8,17 @@ function Footer() {
       <div className={styles.section}>
         <ul>
           <li>
-            email: info@squaremile.com
+            email: info@octopuscoffee.com
           </li>
           <li>
-            phone: 0207 729 3744
+            phone: 0123 456 7890
           </li>
           <li>
-            Square Mile Coffee Roasters<br/>
-            Unit 13, Uplands Business Park,<br/>
-            Blackhorse Lane,<br/>
-            London<br/>
-            E17 5QJ<br/>
+            Octopus Coffee Roasters<br/>
+            Unit 1, Business Park,<br/>
+            Unknown Road,<br/>
+            Glasgow<br/>
+            G1 1AB<br/>
           </li>
         </ul>
       </div>
@@ -53,7 +53,7 @@ function Footer() {
       <div className={styles.section}>
         <h3>Sign up to our newsletter!</h3>
         <p>
-          To keep up to date with the latest news from Square Mile, subscribe to our newsletter. Please enter your details below.
+          To keep up to date with the latest news from Octopus, subscribe to our newsletter. Please enter your details below.
         </p>
         <form className={styles.signup}>
           <input

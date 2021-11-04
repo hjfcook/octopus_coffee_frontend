@@ -12,6 +12,7 @@ import CartPage from './Pages/Cart/Cart';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Account from './Pages/Account/Account';
+import Admin from './Pages/Admin/Admin';
 
 import {UserProvider} from './Contexts/UserContext';
 import {CartProvider} from './Contexts/CartContext';
@@ -59,6 +60,9 @@ function App() {
               </Route>
               <Route path='/account'>
                 <Account />
+              </Route>
+              <Route path='/admin'>
+                <Admin />
               </Route>
             </Switch>
           </div>
