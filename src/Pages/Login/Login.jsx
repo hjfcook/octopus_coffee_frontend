@@ -4,8 +4,7 @@ import { Redirect, Link } from 'react-router-dom';
 
 import {UserContext} from '../../Contexts/UserContext'
 
-import Header from '../../Components/Header/Header.jsx';
-import Footer from '../../Components/Footer/Footer.jsx';
+import PageTemplate from '../PageTemplate/PageTemplate';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -35,36 +34,32 @@ function Login() {
     userTest.user.email ?
     <Redirect to='/account' />
     :
-    <div className={styles.loginPage}>
-      <Header />
-      <div className={styles.loginBlock}>
-        <h1>log in</h1>
-        <form onSubmit={login} id='login-form'>
-          <fieldset>
-            <label for="email">Email address:</label>
-            <input
-              name='email'
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label for="password">Password:</label>
-            <input
-              name='password'
-              placeholder="password"
-              type='password'
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </fieldset>
-        </form>
-        <div className={styles.buttonDiv}>
-          <button type='submit' form='login-form'>log in</button>
-        </div>
-        <Link to='/register' className={styles.spacedLink}>don't have an account yet?</Link>
-        <br/>
-        <Link to='/register'>forgot your password?</Link>
+    <PageTemplate>
+      <h1>log in</h1>
+      <form onSubmit={login} id='login-form' className={styles.form}>
+        <fieldset>
+          <label for="email">Email address:</label>
+          <input
+            name='email'
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label for="password">Password:</label>
+          <input
+            name='password'
+            placeholder="password"
+            type='password'
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </fieldset>
+      </form>
+      <div className={styles.buttonDiv}>
+        <button type='submit' form='login-form'>log in</button>
       </div>
-      <Footer />
-    </div>
+      <Link to='/register' className={styles.spacedLink}>don't have an account yet?</Link>
+      <br/>
+      <Link to='/register'>forgot your password?</Link>
+    </PageTemplate>
   );
 }
 

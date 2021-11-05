@@ -2,10 +2,7 @@ import styles from './Register.module.css';
 import React, { useState } from "react";
 import { useHistory, Link } from 'react-router-dom';
 
-// import {UserContext} from '../../Contexts/UserContext'
-
-import Header from '../../Components/Header/Header.jsx';
-import Footer from '../../Components/Footer/Footer.jsx';
+import PageTemplate from '../PageTemplate/PageTemplate';
 
 function Register() {
   const [registerFirstName, setRegisterFirstName] = useState("");
@@ -14,7 +11,6 @@ function Register() {
   const [registerPassword, setRegisterPassword] = useState("");
 
   const history = useHistory();
-  // const userTest = React.useContext(UserContext);
 
   const register = () => {
     fetch("http://localhost:3000/register", {
@@ -35,47 +31,43 @@ function Register() {
   };
 
   return (
-    <div className={styles.registerPage}>
-      <Header />
-      <div className={styles.registerBlock}>
-        <h1>register</h1>
-        <form onSubmit={register} id='register-form'>
-          <fieldset>
-            <label for="first-name">First name:</label>
-            <input
-              name='first-name'
-              placeholder="first name"
-              onChange={(e) => setRegisterFirstName(e.target.value)}
-            />
-            <label for="last-name">Last name:</label>
-            <input
-              name='last-name'
-              placeholder="last name"
-              onChange={(e) => setRegisterLastName(e.target.value)}
-            />
-            <label for="email">Email address:</label>
-            <input
-              name='email'
-              placeholder="email"
-              onChange={(e) => setRegisterEmail(e.target.value)}
-            />
-            <label for="password">Password:</label>
-            <input
-              name='password'
-              placeholder="password"
-              type='password'
-              onChange={(e) => setRegisterPassword(e.target.value)}
-            />
-          </fieldset>
-        </form>
-        <div className={styles.buttonDiv}>
-          <button type='submit' form='register-form'>register</button>
-        </div>
-        {/* <a href=''>already have an account?</a> */}
-        <Link to='/login'>already have an account?</Link>
+    <PageTemplate>
+      <h1>register</h1>
+      <form onSubmit={register} id='register-form' className={styles.form}>
+        <fieldset>
+          <label for="first-name">First name:</label>
+          <input
+            name='first-name'
+            placeholder="first name"
+            onChange={(e) => setRegisterFirstName(e.target.value)}
+          />
+          <label for="last-name">Last name:</label>
+          <input
+            name='last-name'
+            placeholder="last name"
+            onChange={(e) => setRegisterLastName(e.target.value)}
+          />
+          <label for="email">Email address:</label>
+          <input
+            name='email'
+            placeholder="email"
+            onChange={(e) => setRegisterEmail(e.target.value)}
+          />
+          <label for="password">Password:</label>
+          <input
+            name='password'
+            placeholder="password"
+            type='password'
+            onChange={(e) => setRegisterPassword(e.target.value)}
+          />
+        </fieldset>
+      </form>
+      <div className={styles.buttonDiv}>
+        <button type='submit' form='register-form'>register</button>
       </div>
-      <Footer />
-    </div>
+      {/* <a href=''>already have an account?</a> */}
+      <Link to='/login'>already have an account?</Link>
+    </PageTemplate>
   );
 }
 

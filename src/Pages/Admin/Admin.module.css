@@ -1,24 +1,4 @@
-.adminPage {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow: auto;
-}
-
-.adminBlock {
-  background: url("https://www.toptal.com/designers/subtlepatterns/patterns/webb.png");
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  margin-top: 3.5rem;
-  margin-bottom: 1rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2rem 5rem 3rem 5rem;
-
-  width: 700px;
-  /* transition: all 1s; */
-}
-
-.adminBlock table {
+.table {
   /* text-align: left; */
 
   margin: 4rem auto 2rem auto;
@@ -36,13 +16,13 @@
   border-bottom: 1px solid rgb(173, 173, 173);
 }
 
-.adminBlock thead th {
+.table thead th {
   padding-top: 1rem;
   padding-bottom: 1rem;
   /* border-bottom: 1px solid black; */
 }
 
-.adminBlock tbody td {
+.table tbody td {
   padding-bottom: 0.5rem;
 
   /* max-width: 120px; */
@@ -51,48 +31,48 @@
   white-space: nowrap;
 }
 
-.adminBlock thead th:nth-child(1) {
+.table thead th:nth-child(1) {
   width: 25%;
   text-align: left;
 }
 
-.adminBlock thead th:nth-child(2) {
+.table thead th:nth-child(2) {
   width: 25%;
   text-align: left;
 }
 
-.adminBlock thead th:nth-child(3) {
+.table thead th:nth-child(3) {
   width: 25%;
   text-align: left;
 }
 
-.adminBlock  thead th:nth-child(4) {
+.table  thead th:nth-child(4) {
   width: 15%;
   text-align: right;
 }
 
-.adminBlock  thead th:nth-child(5) {
+.table  thead th:nth-child(5) {
   width: 10%;
   text-align: right;
 }
 
-.adminBlock  tbody td:nth-child(1) {
+.table  tbody td:nth-child(1) {
   text-align: left;
 }
 
-.adminBlock  tbody td:nth-child(2) {
+.table  tbody td:nth-child(2) {
   text-align: left;
 }
 
-.adminBlock  tbody td:nth-child(3) {
+.table  tbody td:nth-child(3) {
   text-align: left;
 }
 
-.adminBlock  tbody td:nth-child(4) {
+.table  tbody td:nth-child(4) {
   text-align: right;
 }
 
-.adminBlock  tbody td:nth-child(5) {
+.table  tbody td:nth-child(5) {
   text-align: right;
 }
 
@@ -103,11 +83,9 @@
 .buttonDiv {
   text-align: right;
   margin-bottom: 1rem;
-
-  /* border: 1px solid black; */
 }
 
-.adminBlock button {
+.buttonDiv button {
   width: 5rem;
   height: 1.7rem;
   border: none;
@@ -121,10 +99,10 @@
   color: white;
 }
 
-.adminBlock button:hover {
+.buttonDiv button:hover {
   transform: scale(1.1);
 }
 
-.adminBlock button:active {
+.buttonDiv button:active {
   transform: scale(1);
 }
