@@ -4,14 +4,17 @@ import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
 import CoffeeSpotlight from '../../Components/CoffeeSpotlight/CoffeeSpotlight.jsx';
 
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import {Switch,Route} from "react-router-dom";
 
 
 function CoffeePage() {
   const [coffeeProducts, setCoffeeProducts] = useState([]);
-  const [displayProducts, setDisplayProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sortingField, setSortingField] = useState('');
+  const [ascending, setAscending] = useState(true);
+
+  const [productBackup, setProductBackup] = useState([]);
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -21,41 +24,42 @@ function CoffeePage() {
     return dataRead;
   };
 
-  function productSort(attribute, direction) {
+  const productSort = useCallback(() => {
     function comparison(a, b) {
-      if (a[attribute] < b[attribute]){
-        return direction === 'ascending' ? -1 : 1;
+      if (a[sortingField] < b[sortingField]){
+        return ascending ? -1 : 1;
       }
-      if (a[attribute] > b[attribute]){
-        return direction === 'ascending' ? 1 : -1;
+      if (a[sortingField] > b[sortingField]){
+        return ascending ? 1 : -1;
       }
       return 0;
     }
-
-    let sortedProducts = [...displayProducts];
-    sortedProducts.sort(comparison);
-    setDisplayProducts(sortedProducts);
-  }
+    setCoffeeProducts(prevProducts => [...prevProducts].sort(comparison));
+  }, [sortingField, ascending]);
 
   function sortAToZ() {
-    productSort('name', 'ascending');
+    setSortingField('name');
+    setAscending(true);
   }
 
   function sortZToA() {
-    productSort('name', 'descending');
+    setSortingField('name');
+    setAscending(false);
   }
 
   function sortLowToHigh() {
-    productSort('price', 'ascending');
+    setSortingField('price');
+    setAscending(true);
   }
 
   function sortHighToLow() {
-    productSort('price', 'descending');
+    setSortingField('price');
+    setAscending(false);
   }
 
   function productFilter(category, value) {
-    const filteredProducts = coffeeProducts.filter(coffee => coffee[category.toLowerCase()].toLowerCase() === value.toLowerCase())
-    setDisplayProducts(filteredProducts);
+    const filteredProducts = productBackup.filter(coffee => coffee[category.toLowerCase()].toLowerCase() === value.toLowerCase())
+    setCoffeeProducts(filteredProducts);
   }
 
   const sortOptions = [
@@ -74,9 +78,13 @@ function CoffeePage() {
   useEffect(() => {
     (async () => {
       const data = await fetchData();
-      setDisplayProducts(data);
+      setProductBackup(data);
     })();
   }, []);
+
+  useEffect(() => {
+    productSort();
+  }, [productSort]);
 
   return (
     <div className={styles.coffeePage}>
@@ -85,7 +93,7 @@ function CoffeePage() {
           <Header sortOptions={sortOptions} filterOptions={filterOptions}/>
           <div className={styles.coffeeSelection}>
             {isLoading? <div className={styles.loading}>loading...</div> :
-            displayProducts.map(coffee => (
+            coffeeProducts.map(coffee => (
               <CoffeeSlot
                 key = {coffee._id}
                 coffee={coffee}

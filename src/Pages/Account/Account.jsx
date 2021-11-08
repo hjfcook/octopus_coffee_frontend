@@ -1,5 +1,6 @@
-import styles from './Account.module.css';
-import React, { useState } from "react";
+// import styles from './Account.module.css';
+// import React, { useState } from "react";
+import React from "react";
 import {Redirect} from 'react-router-dom';
 
 import {UserContext} from '../../Contexts/UserContext'

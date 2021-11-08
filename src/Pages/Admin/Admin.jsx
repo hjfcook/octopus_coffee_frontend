@@ -61,8 +61,6 @@ function Admin() {
   }
 
   useEffect(() => {
-    // fetchData();
-    // setSortingField('name');
     (async () => {
       await fetchData();
       setSortingField('name');
