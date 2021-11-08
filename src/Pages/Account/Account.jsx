@@ -8,14 +8,14 @@ import {UserContext} from '../../Contexts/UserContext'
 import PageTemplate from '../PageTemplate/PageTemplate';
 
 function Account() {
-  const userTest = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
 
   return (
-    userTest.user.email ?
+    userContext.user.email ?
     <PageTemplate>
       <h1>account</h1>
-      <h3>{`${userTest.user.firstName} ${userTest.user.lastName}`}</h3>
-      <h3>{`${userTest.user.email}`}</h3>
+      <h3>{`${userContext.user.firstName} ${userContext.user.lastName}`}</h3>
+      <h3>{`${userContext.user.email}`}</h3>
     </PageTemplate>
     :
     <Redirect to='/login' />

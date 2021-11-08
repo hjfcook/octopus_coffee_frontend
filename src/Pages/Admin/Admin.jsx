@@ -2,6 +2,7 @@ import styles from './Admin.module.css';
 import PageTemplate from '../PageTemplate/PageTemplate';
 import DeleteCoffee from '../../Components/DeleteCoffee/DeleteCoffee';
 import CoffeeMod from '../../Components/CoffeeMod/CoffeeMod';
+import Button from '../../Components/Button/Button';
 
 // import {useState, useEffect, useCallback} from 'react';
 import {useEffect} from 'react';
@@ -103,7 +104,7 @@ function Admin() {
             </table>
           }
           <div className={styles.buttonDiv}>
-            <button onClick={() => {history.push('/admin/add')}} className={styles.primaryButton}>add coffee</button>
+            <Button buttonClass='primary' onClick={() => {history.push('/admin/add')}}>add coffee</Button>
           </div>
         </Route>
         <Route path='/admin/add'>

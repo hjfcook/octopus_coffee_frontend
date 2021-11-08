@@ -1,5 +1,6 @@
 import styles from './Cart.module.css';
 import PageTemplate from '../PageTemplate/PageTemplate';
+import Button from '../../Components/Button/Button';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -8,11 +9,11 @@ import {useContext} from 'react';
 import {CartContext} from '../../Contexts/CartContext.jsx';
 
 function CartPage() {
-  const context = useContext(CartContext);
+  const cartContext = useContext(CartContext);
 
   let total = 0;
-  if (context.cart.length > 0) {
-    total = context.cart.map(item => item.price * item.quantity).reduce((prev, curr) => prev + curr);
+  if (cartContext.cart.length > 0) {
+    total = cartContext.cart.map(item => item.price * item.quantity).reduce((prev, curr) => prev + curr);
   }
 
   return (
@@ -31,7 +32,7 @@ function CartPage() {
           </tr>
         </thead>
         <tbody>
-          {context.cart.map(product => (
+          {cartContext.cart.map(product => (
             <tr key={product._id}>
               <td>
                 <Link to={`coffee/${product.name.toLowerCase().replace(/ /g, '-')}`}>{product.name}</Link>
@@ -45,7 +46,7 @@ function CartPage() {
                   min="1" 
                   max="30" 
                   value={product.quantity} 
-                  onChange={(e) => {context.setQuantity(product, Number(e.target.value))}}
+                  onChange={(e) => {cartContext.setQuantity(product, Number(e.target.value))}}
                 />
               </td>
               <td>
@@ -55,7 +56,7 @@ function CartPage() {
                 <FontAwesomeIcon
                   icon={faTrashAlt}
                   className={styles.deleteIcon}
-                  onClick={() => {context.removeFromCart(product)}}
+                  onClick={() => {cartContext.removeFromCart(product)}}
                 />
               </td>
             </tr>
@@ -76,8 +77,7 @@ function CartPage() {
         </tfoot>
       </table>
       <div className={styles.cartButtons}>
-        {/* <button>update</button> */}
-        <button className={styles.mainButton} onClick={() => {console.log(context.cart)}}>checkout</button>
+        <Button buttonClass='primary' onClick={() => {console.log(cartContext.cart)}}>checkout</Button>
       </div>
     </PageTemplate>
   );

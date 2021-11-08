@@ -90,32 +90,10 @@
   margin-bottom: 1rem;
 }
 
-.cartButtons button {
-  width: 5rem;
-  height: 1.7rem;
-  border: none;
-  border-radius: 2px;
-  border: 1px solid black;
-  margin-left: 0.5rem;
-}
-
 .deleteIcon {
   transform: scale(0.9);
 }
 
 .deleteIcon:hover {
   color: #C01F02;
-}
-
-.mainButton {
-  background-color: #02a3c0;
-  color: white;
-}
-
-.cartButtons button:hover {
-  transform: scale(1.1);
-}
-
-.cartButtons button:active {
-  transform: scale(1);
 }

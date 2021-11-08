@@ -3,7 +3,6 @@ import React, {useState, useEffect} from 'react';
 const CartContext = React.createContext();
 
 function CartProvider({children}) {
-  // const [cart, setCart] = useState([]);
   const [cart, setCart] = useState(
     () => {
       const localCart = window.localStorage.getItem('cart');

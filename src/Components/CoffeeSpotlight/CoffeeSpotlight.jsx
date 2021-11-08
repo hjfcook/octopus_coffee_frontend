@@ -3,10 +3,12 @@ import styles from './CoffeeSpotlight.module.css';
 import React, {useState} from 'react';
 import {CartContext} from '../../Contexts/CartContext.jsx'
 
+import Button from '../Button/Button';
+
 
 function CoffeeSpotlight(props) {
   const [quantity, setQuantity] = useState(1);
-  const context = React.useContext(CartContext);
+  const cartContext = React.useContext(CartContext);
 
   const handleChange = (event) => {
     setQuantity(Number(event.target.value));
@@ -51,11 +53,14 @@ function CoffeeSpotlight(props) {
                 <option value="5">5</option>
               </select>
             </div>
-            <button 
+            <Button 
+              buttonClass='primary' 
               onClick={() => {
-                context.addToCart(props.coffee, quantity)
+                cartContext.addToCart(props.coffee, quantity)
               }}
-            >add to cart</button>
+            >
+              add to cart
+            </Button>
           </div>
         </div>
       </div>

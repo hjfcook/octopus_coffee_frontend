@@ -1,5 +1,7 @@
 import styles from './CoffeeMod.module.css';
 
+import Button from '../Button/Button';
+
 import {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 
@@ -56,7 +58,6 @@ function CoffeeMod(props) {
       .then(res => {
         console.log(res);
         history.push('/admin');
-        // fetchData();
         props.fetchData();
       });
   };
@@ -347,18 +348,16 @@ function CoffeeMod(props) {
         <input value={coffeeDescriptor3} type="text" onChange={(e) => {setCoffeeDescriptor3(e.target.value)}} name="descriptor3" className={styles.formElement} />
         <label htmlFor="description">Description:</label>
         <textarea  value={coffeeDescription} type="text" onChange={(e) => {setCoffeeDescription(e.target.value)}} name="description" className={`${styles.formElement} ${styles.description}`} />
-        {/* <input type="submit" value="save" className={styles.formElement} /> */}
       </form>
       <div className={styles.buttonDiv}>
         {props.type === 'edit' ?
-        <button onClick={() => history.push('/admin/delete/' + props.coffee._id)} className={styles.dangerButton}>delete</button>
+        <Button buttonClass='danger' onClick={() => history.push('/admin/delete/' + props.coffee._id)}>delete</Button>
         :
-        // <></>
         <div></div>
         }
         <div className={styles.rightButtons}>
-          <button onClick={() => history.push('/admin')}>cancel</button>
-          <button onClick={coffeeAction} className={styles.primaryButton}>save</button>
+          <Button buttonClass='secondary' onClick={() => history.push('/admin')}>cancel</Button>
+          <Button buttonClass='primary' onClick={coffeeAction} style={{'marginLeft': '0.5rem'}}>save</Button>
         </div>
       </div>
     </>

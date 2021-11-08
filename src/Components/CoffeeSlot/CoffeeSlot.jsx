@@ -1,33 +1,19 @@
 import styles from './CoffeeSlot.module.css';
 import React, {useState} from 'react';
 
+import Button from '../Button/Button';
 import {CartContext} from '../../Contexts/CartContext.jsx'
-
-
-
 import { useHistory } from 'react-router-dom';
-
-const LinkButton = (props) => {
-  const history = useHistory();
-  const handleClick = () => history.push(props.url);
-
-  return (
-    <button type="button" onClick={handleClick}>
-      more info
-    </button>
-  );
-};
-
-
 
 function CoffeeSlot(props) {
   const [hovered, setHovered] = useState(false);
 
   const hoverHandler = () => {
-    setHovered(!hovered);
+    setHovered(prevHovered => !prevHovered);
   }
 
-  const context = React.useContext(CartContext);
+  const cartContext = React.useContext(CartContext);
+  const history = useHistory();
 
   return (
     <div
@@ -41,7 +27,7 @@ function CoffeeSlot(props) {
             {props.coffee.name}
           </div>
           <div className={styles.coffeeOrigin}>
-            {props.coffee.origin}
+            {props.coffee.country}
           </div>
         </div>
         <div className={styles.coffeeDescriptors}>
@@ -52,13 +38,18 @@ function CoffeeSlot(props) {
 
         </div>
         <div className={hovered ? styles.buttonDivHover : styles.buttonDiv}>
-          <LinkButton url={'coffee/' + props.coffee.name.toLowerCase().replace(/ /g, '-')}/>
-          <button
-            className={styles.toCart}
-            onClick={() => {
-              context.addToCart(props.coffee, 1)
-            }}
-          >add to cart</button>
+          <Button 
+            buttonClass='secondary' 
+            onClick={() => history.push('coffee/' + props.coffee.name.toLowerCase().replace(/ /g, '-'))}
+          >
+            more info
+          </Button>
+          <Button 
+            buttonClass='primary' 
+            onClick={() => {cartContext.addToCart(props.coffee, 1)}}
+          >
+            add to cart 
+          </Button>
         </div>
       </div>
     </div>

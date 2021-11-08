@@ -11,17 +11,17 @@ import Dropdown from '../Dropdown/Dropdown';
 
 function Header(props) {
 
-  const context = useContext(CartContext);
-  const userTest = useContext(UserContext);
+  const cartContext = useContext(CartContext);
+  const userContext = useContext(UserContext);
 
   let items = 0;
-  if (context.cart.length > 0) {
-    items = context.cart.map(item => item.quantity).reduce((prev, curr) => prev + curr);
+  if (cartContext.cart.length > 0) {
+    items = cartContext.cart.map(item => item.quantity).reduce((prev, curr) => prev + curr);
   }
 
   let total = 0;
-  if (context.cart.length > 0) {
-    total = context.cart.map(item => item.price * item.quantity).reduce((prev, curr) => prev + curr);
+  if (cartContext.cart.length > 0) {
+    total = cartContext.cart.map(item => item.price * item.quantity).reduce((prev, curr) => prev + curr);
   }
 
   const logout = () => {
@@ -33,7 +33,7 @@ function Header(props) {
       .then(res => {
         console.log(res)
         if (res.loggedOut) {
-          userTest.setLoggedIn(false);
+          userContext.setLoggedIn(false);
         }
       });
   };
@@ -49,13 +49,11 @@ function Header(props) {
         : null}
       </ul>
       <ul>
-        {/* <li>{userTest.username}</li> */}
-        {/* <li>{JSON.stringify(userTest)}</li> */}
-        {userTest.user.email ?
+        {userContext.user.email ?
           <>
-            <li>Welcome back, {userTest.user.firstName}</li>
+            <li>Welcome back, {userContext.user.firstName}</li>
             <li>|</li>
-            {userTest.user.admin ?
+            {userContext.user.admin ?
               <>
                 <li><Link to='/admin'>admin</Link></li>
                 <li>|</li>

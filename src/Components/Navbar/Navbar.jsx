@@ -20,14 +20,10 @@ function Navbar() {
   return (
     <div className={styles.sidebar}>
       <img
-        // src="https://cdn.shopify.com/s/files/1/0017/1562/t/18/assets/sqmile-img-logo-transparent@2x@2x.png?v=1623381581665049233"
         src={logo}
-        alt="Square Mile Coffee Roasters"
-        // width="130"
-        // height="152"
+        alt="Octopus Coffee Roasters"
         width="130"
-        // height="160"
-        >
+      >
       </img>
       <nav>
           <ul>

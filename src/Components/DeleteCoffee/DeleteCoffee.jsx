@@ -1,5 +1,7 @@
 import styles from './DeleteCoffee.module.css';
 
+import Button from '../Button/Button';
+
 import {useHistory} from 'react-router-dom';
 
 function AddCoffee(props) {
@@ -28,8 +30,8 @@ function AddCoffee(props) {
       <h2>are you sure you want to delete this coffee?</h2>
       <h3>this action CANNOT be undone</h3>
       <div className={styles.buttonDiv}>
-        <button onClick={() => history.push('/admin/edit/' + props.coffee.name.toLowerCase().replace(/ /g, '-'))}>cancel</button>
-        <button onClick={deleteCoffee} className={styles.dangerButton}>delete</button>
+        <Button buttonClass='secondary' onClick={() => history.push('/admin/edit/' + props.coffee.name.toLowerCase().replace(/ /g, '-'))}>cancel</Button>
+        <Button buttonClass='danger' onClick={deleteCoffee}>delete</Button>
       </div>
     </>
   );

@@ -4,7 +4,6 @@ import React, {useState, useEffect} from 'react';
 const UserContext = React.createContext();
 
 function UserProvider({children}) {
-  // const [user, setUser] = useState(null);
   const [user, setUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
 

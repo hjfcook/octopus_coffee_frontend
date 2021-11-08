@@ -4,6 +4,7 @@ import { useHistory, Link, Redirect } from 'react-router-dom';
 
 import PageTemplate from '../PageTemplate/PageTemplate';
 import {UserContext} from '../../Contexts/UserContext'
+import Button from '../../Components/Button/Button';
 
 function Auth(props) {
   const [firstName, setFirstName] = useState("");
@@ -12,7 +13,7 @@ function Auth(props) {
   const [password, setPassword] = useState("");
 
   const history = useHistory();
-  const userTest = React.useContext(UserContext);
+  const userContext = React.useContext(UserContext);
 
   const register = () => {
     fetch("http://localhost:3000/register", {
@@ -46,13 +47,13 @@ function Auth(props) {
       .then(res => {
         console.log(res)
         if (res !== 'No User Exists') {
-          userTest.setLoggedIn(true);
+          userContext.setLoggedIn(true);
         }
       });
   };
 
   return (
-    userTest.user.email ?
+    userContext.user.email ?
     <Redirect to='/account' />
     :
     <PageTemplate>
@@ -99,7 +100,7 @@ function Auth(props) {
         </fieldset>
       </form>
       <div className={styles.buttonDiv}>
-        <button type='submit' form='form'>{props.type}</button>
+        <Button buttonClass='primary' type='submit' form='form'>{props.type}</Button>
       </div>
       {props.type === 'register' ?
         <Link to='/login'>already have an account?</Link>

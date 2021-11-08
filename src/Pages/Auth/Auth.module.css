@@ -42,25 +42,6 @@
   margin-bottom: 1rem;
 }
 
-.buttonDiv button {
-  width: 5rem;
-  height: 1.7rem;
-  border: none;
-  border-radius: 2px;
-  border: 1px solid black;
-  margin-left: 0.5rem;
-  background-color: #02a3c0;
-  color: white;
-}
-
-.buttonDiv button:hover {
-  transform: scale(1.1);
-}
-
-.buttonDiv button:active {
-  transform: scale(1);
-}
-
 .spacedLink {
   line-height: 2rem;
 }
