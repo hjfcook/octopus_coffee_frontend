@@ -1,43 +1,33 @@
 import styles from './Admin.module.css';
 import PageTemplate from '../PageTemplate/PageTemplate';
-// import AddCoffee from '../../Components/AddCoffee/AddCoffee';
-// import EditCoffee from '../../Components/EditCoffee/EditCoffee';
 import DeleteCoffee from '../../Components/DeleteCoffee/DeleteCoffee';
 import CoffeeMod from '../../Components/CoffeeMod/CoffeeMod';
 
-import {useState, useEffect, useCallback} from 'react';
+// import {useState, useEffect, useCallback} from 'react';
+import {useEffect} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {Switch, Route, useHistory} from 'react-router-dom';
 
+import useCoffee from '../../Hooks/useCoffee';
+
 function Admin() {
-  const [coffeeProducts, setCoffeeProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [sortingField, setSortingField] = useState('');
-  const [ascending, setAscending] = useState(true);
+  // const [
+  //   coffeeProducts, setCoffeeProducts,  
+  //   isLoading, setIsLoading,
+  //   sortingField, setSortingField,
+  //   ascending, setAscending,
+  //   fetchData,
+  // ] = useCoffee();
+  const [
+    coffeeProducts, ,  
+    isLoading, ,
+    sortingField, setSortingField,
+    ascending, setAscending,
+    fetchData,
+  ] = useCoffee();
   
   const history = useHistory();
-
-  const fetchData = async() => {
-    setIsLoading(true);
-    const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
-    setCoffeeProducts(dataRead);
-    setIsLoading(false);
-    return dataRead;
-  };
-
-  const productSort = useCallback(() => {
-    function comparison(a, b) {
-      if (a[sortingField] < b[sortingField]){
-        return ascending ? -1 : 1;
-      }
-      if (a[sortingField] > b[sortingField]){
-        return ascending ? 1 : -1;
-      }
-      return 0;
-    }
-    setCoffeeProducts(prevProducts => [...prevProducts].sort(comparison));
-  }, [sortingField, ascending]);
 
   function updateSorting(field) {
     if (sortingField === field) {
@@ -65,19 +55,13 @@ function Admin() {
       await fetchData();
       setSortingField('name');
     })();
-  }, []);
-
-  useEffect(() => {
-    productSort();
-  }, [productSort]);
-
+  }, [fetchData, setSortingField]);
 
   return (
     <PageTemplate>
       <Switch>
         <Route exact path='/admin'>
           <h1>admin</h1>
-          {/* <p>{JSON.stringify(coffeeProducts)}</p> */}
           {isLoading ?
             <p>loading...</p>
             :
@@ -123,12 +107,10 @@ function Admin() {
           </div>
         </Route>
         <Route path='/admin/add'>
-          {/* <AddCoffee fetchData={fetchData}/> */}
           <CoffeeMod type='add' fetchData={fetchData} />
         </Route>
         {coffeeProducts.map(product => (
           <Route path={'/admin/edit/' + product.name.toLowerCase().replace(/ /g, '-')} key={product._id}>
-            {/* <EditCoffee coffee={product} fetchData={fetchData}/> */}
             <CoffeeMod type='edit' coffee={product} fetchData={fetchData} />
           </Route>
         ))}

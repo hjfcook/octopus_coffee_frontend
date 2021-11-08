@@ -4,38 +4,29 @@ import CoffeeSlot from '../../Components/CoffeeSlot/CoffeeSlot.jsx';
 import Footer from '../../Components/Footer/Footer.jsx';
 import CoffeeSpotlight from '../../Components/CoffeeSpotlight/CoffeeSpotlight.jsx';
 
-import {useState, useEffect, useCallback} from 'react';
+// import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 import {Switch,Route} from "react-router-dom";
 
+import useCoffee from '../../Hooks/useCoffee';
 
 function CoffeePage() {
-  const [coffeeProducts, setCoffeeProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [sortingField, setSortingField] = useState('');
-  const [ascending, setAscending] = useState(true);
+  // const [
+  //   coffeeProducts, setCoffeeProducts,  
+  //   isLoading, setIsLoading,
+  //   sortingField, setSortingField,
+  //   ascending, setAscending,
+  //   fetchData,
+  // ] = useCoffee();
+  const [
+    coffeeProducts, setCoffeeProducts,  
+    isLoading, ,
+    , setSortingField,
+    , setAscending,
+    fetchData,
+  ] = useCoffee();
 
   const [productBackup, setProductBackup] = useState([]);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
-    setCoffeeProducts(dataRead);
-    setIsLoading(false);
-    return dataRead;
-  };
-
-  const productSort = useCallback(() => {
-    function comparison(a, b) {
-      if (a[sortingField] < b[sortingField]){
-        return ascending ? -1 : 1;
-      }
-      if (a[sortingField] > b[sortingField]){
-        return ascending ? 1 : -1;
-      }
-      return 0;
-    }
-    setCoffeeProducts(prevProducts => [...prevProducts].sort(comparison));
-  }, [sortingField, ascending]);
 
   function sortAToZ() {
     setSortingField('name');
@@ -80,11 +71,7 @@ function CoffeePage() {
       const data = await fetchData();
       setProductBackup(data);
     })();
-  }, []);
-
-  useEffect(() => {
-    productSort();
-  }, [productSort]);
+  }, [fetchData]);
 
   return (
     <div className={styles.coffeePage}>
