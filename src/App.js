@@ -9,10 +9,11 @@ import {
 import Navbar from './Components/Navbar/Navbar'
 import CoffeePage from './Pages/Coffee/Coffee';
 import CartPage from './Pages/Cart/Cart';
-import Login from './Pages/Login/Login';
-import Register from './Pages/Register/Register';
+// import Login from './Pages/Login/Login';
+// import Register from './Pages/Register/Register';
 import Account from './Pages/Account/Account';
 import Admin from './Pages/Admin/Admin';
+import Auth from './Pages/Auth/Auth';
 
 import {UserProvider} from './Contexts/UserContext';
 import {CartProvider} from './Contexts/CartContext';
@@ -53,10 +54,12 @@ function App() {
                 <CartPage />
               </Route>
               <Route path='/login'>
-                <Login />
+                {/* <Login /> */}
+                <Auth type='login' />
               </Route>
               <Route path='/register'>
-                <Register />
+                {/* <Register /> */}
+                <Auth type='register' />
               </Route>
               <Route path='/account'>
                 <Account />
