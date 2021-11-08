@@ -1,11 +1,11 @@
-
 import styles from './Admin.module.css';
 import PageTemplate from '../PageTemplate/PageTemplate';
-import AddCoffee from '../../Components/AddCoffee/AddCoffee';
-import EditCoffee from '../../Components/EditCoffee/EditCoffee';
+// import AddCoffee from '../../Components/AddCoffee/AddCoffee';
+// import EditCoffee from '../../Components/EditCoffee/EditCoffee';
 import DeleteCoffee from '../../Components/DeleteCoffee/DeleteCoffee';
+import CoffeeMod from '../../Components/CoffeeMod/CoffeeMod';
 
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {Switch, Route, useHistory} from 'react-router-dom';
@@ -13,7 +13,8 @@ import {Switch, Route, useHistory} from 'react-router-dom';
 function Admin() {
   const [coffeeProducts, setCoffeeProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [sorting, setSorting] = useState({field: null, ascending: false});
+  const [sortingField, setSortingField] = useState('');
+  const [ascending, setAscending] = useState(true);
   
   const history = useHistory();
 
@@ -22,43 +23,34 @@ function Admin() {
     const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
     setCoffeeProducts(dataRead);
     setIsLoading(false);
+    return dataRead;
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  function productSort(attribute, direction) {
+  const productSort = useCallback(() => {
     function comparison(a, b) {
-      if (a[attribute] < b[attribute]){
-        return direction === 'ascending' ? -1 : 1;
+      if (a[sortingField] < b[sortingField]){
+        return ascending ? -1 : 1;
       }
-      if (a[attribute] > b[attribute]){
-        return direction === 'ascending' ? 1 : -1;
+      if (a[sortingField] > b[sortingField]){
+        return ascending ? 1 : -1;
       }
       return 0;
     }
+    setCoffeeProducts(prevProducts => [...prevProducts].sort(comparison));
+  }, [sortingField, ascending]);
 
-    let sortedProducts = [...coffeeProducts];
-    sortedProducts.sort(comparison);
-    setCoffeeProducts(sortedProducts);
-  }
-
-  function updateSortingField(field) {
-    if (sorting.field === field) {
-      setSorting(prevSorting => ({field: field, ascending: !prevSorting.ascending}));
+  function updateSorting(field) {
+    if (sortingField === field) {
+      setAscending(prevAscending => !prevAscending);
     } else {
-      setSorting({field: field, ascending: true});
+      setAscending(true);
     }
+    setSortingField(field);
   }
-
-  useEffect(() => {
-    productSort(sorting.field, sorting.ascending ? 'ascending' : 'descending');
-  }, [sorting]);
 
   function selectSymbol(field) {
-    if (sorting.field === field) {
-      if (sorting.ascending) {
+    if (sortingField === field) {
+      if (ascending) {
         return '▲';
       } else {
         return '▼';
@@ -67,6 +59,20 @@ function Admin() {
       return ''
     }
   }
+
+  useEffect(() => {
+    // fetchData();
+    // setSortingField('name');
+    (async () => {
+      await fetchData();
+      setSortingField('name');
+    })();
+  }, []);
+
+  useEffect(() => {
+    productSort();
+  }, [productSort]);
+
 
   return (
     <PageTemplate>
@@ -80,10 +86,10 @@ function Admin() {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th onClick={() => {updateSortingField('name')}}>Name {selectSymbol('name')}</th>
-                  <th onClick={() => {updateSortingField('country')}}>Country {selectSymbol('country')}</th>
-                  <th onClick={() => {updateSortingField('process')}}>Process {selectSymbol('process')}</th>
-                  <th onClick={() => {updateSortingField('price')}}>Price {selectSymbol('price')}</th>
+                  <th onClick={() => {updateSorting('name')}}>Name {selectSymbol('name')}</th>
+                  <th onClick={() => {updateSorting('country')}}>Country {selectSymbol('country')}</th>
+                  <th onClick={() => {updateSorting('process')}}>Process {selectSymbol('process')}</th>
+                  <th onClick={() => {updateSorting('price')}}>Price {selectSymbol('price')}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -119,15 +125,17 @@ function Admin() {
           </div>
         </Route>
         <Route path='/admin/add'>
-          <AddCoffee fetchData={fetchData}/>
+          {/* <AddCoffee fetchData={fetchData}/> */}
+          <CoffeeMod type='add' fetchData={fetchData} />
         </Route>
         {coffeeProducts.map(product => (
-          <Route path={'/admin/edit/' + product.name.toLowerCase().replace(/ /g, '-')}>
-            <EditCoffee coffee={product} fetchData={fetchData}/>
+          <Route path={'/admin/edit/' + product.name.toLowerCase().replace(/ /g, '-')} key={product._id}>
+            {/* <EditCoffee coffee={product} fetchData={fetchData}/> */}
+            <CoffeeMod type='edit' coffee={product} fetchData={fetchData} />
           </Route>
         ))}
         {coffeeProducts.map(product => (
-          <Route path={'/admin/delete/' + product._id}>
+          <Route path={'/admin/delete/' + product._id} key={product._id}>
             <DeleteCoffee coffee={product} fetchData={fetchData}/>
           </Route>
         ))}

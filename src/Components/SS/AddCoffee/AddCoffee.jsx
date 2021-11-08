@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 
 function AddCoffee(props) {
+  console.log(props.coffee.name);
   const [coffeeName, setCoffeeName] = useState('');
   const [coffeeContinent, setCoffeeContinent] = useState('N/A');
   const [coffeeCountry, setCoffeeCountry] = useState('N/A');

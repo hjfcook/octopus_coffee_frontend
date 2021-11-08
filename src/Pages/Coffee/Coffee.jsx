@@ -5,10 +5,7 @@ import Footer from '../../Components/Footer/Footer.jsx';
 import CoffeeSpotlight from '../../Components/CoffeeSpotlight/CoffeeSpotlight.jsx';
 
 import {useState, useEffect} from 'react';
-import {
-  Switch,
-  Route,
-} from "react-router-dom";
+import {Switch,Route} from "react-router-dom";
 
 
 function CoffeePage() {
@@ -16,16 +13,13 @@ function CoffeePage() {
   const [displayProducts, setDisplayProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async() => {
-      setIsLoading(true);
-      const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
-      setCoffeeProducts(dataRead);
-      setDisplayProducts(dataRead);
-      setIsLoading(false);
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    setIsLoading(true);
+    const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
+    setCoffeeProducts(dataRead);
+    setIsLoading(false);
+    return dataRead;
+  };
 
   function productSort(attribute, direction) {
     function comparison(a, b) {
@@ -76,6 +70,13 @@ function CoffeePage() {
     {text: 'Process', subOptions: ['Honey', 'Natural', 'Pulped Natural', 'Washed'], action: productFilter},
     {text: 'Roast', subOptions: ['Light', 'Medium', 'Medium-dark', 'Dark'], action: productFilter}
   ]
+
+  useEffect(() => {
+    (async () => {
+      const data = await fetchData();
+      setDisplayProducts(data);
+    })();
+  }, []);
 
   return (
     <div className={styles.coffeePage}>

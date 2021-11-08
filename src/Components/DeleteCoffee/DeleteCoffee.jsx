@@ -1,6 +1,5 @@
 import styles from './DeleteCoffee.module.css';
 
-import {useState, useEffect} from 'react';
 import {useHistory} from 'react-router-dom';
 
 function AddCoffee(props) {
