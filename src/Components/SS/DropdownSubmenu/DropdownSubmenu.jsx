@@ -6,7 +6,7 @@ function DropdownSubmenu(props) {
   const [active, setActive] = useState(false);
 
   return (
-    <div
+    <li
       className={styles.dropdownItem}
       onMouseEnter={() => {setActive(true)}}
       onMouseLeave={() => {setActive(false)}}
@@ -23,7 +23,7 @@ function DropdownSubmenu(props) {
         </div>
       </div>
       : null}
-    </div>
+    </li>
   )
 }
 

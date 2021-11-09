@@ -43,10 +43,10 @@ function Header(props) {
     <nav className={styles.header}>
       <ul>
         {props.filterOptions ?
-        <Dropdown name='view' sortOptions={props.filterOptions} type='submenu'/>
+        <Dropdown name='view' sortOptions={props.filterOptions} childType='menu' level='top'/>
         : null}
         {props.sortOptions ?
-        <Dropdown name='sort' sortOptions={props.sortOptions} type='menu'/>
+        <Dropdown name='sort' sortOptions={props.sortOptions} childType='button' level='top'/>
         : null}
       </ul>
       <ul>
