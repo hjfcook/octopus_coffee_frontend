@@ -1,8 +1,11 @@
 import styles from './Admin.module.css';
+
 import PageTemplate from '../PageTemplate/PageTemplate';
 import DeleteCoffee from '../../Components/DeleteCoffee/DeleteCoffee';
 import CoffeeMod from '../../Components/CoffeeMod/CoffeeMod';
 import Button from '../../Components/Button/Button';
+import useCoffee from '../../Hooks/useCoffee';
+import { displayPounds, formatURL } from '../../Utils/Utils';
 
 // import {useState, useEffect, useCallback} from 'react';
 import {useEffect} from 'react';
@@ -10,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {Switch, Route, useHistory} from 'react-router-dom';
 
-import useCoffee from '../../Hooks/useCoffee';
 
 function Admin() {
   // const [
@@ -89,13 +91,13 @@ function Admin() {
                       {product.process}
                     </td>
                     <td>
-                      {`£${((product.price*100)/100).toFixed(2)}`}
+                      {displayPounds(product.price)}
                     </td>
                     <td>
                       <FontAwesomeIcon
                         icon={faEdit}
                         className={styles.icon}
-                        onClick={() => {history.push('/admin/edit/' + product.name.toLowerCase().replace(/ /g, '-'))}}
+                        onClick={() => {history.push('/admin/edit/' + formatURL(product.name))}}
                       />
                     </td>
                   </tr>
@@ -111,7 +113,7 @@ function Admin() {
           <CoffeeMod type='add' fetchData={fetchData} />
         </Route>
         {coffeeProducts.map(product => (
-          <Route path={'/admin/edit/' + product.name.toLowerCase().replace(/ /g, '-')} key={product._id}>
+          <Route path={'/admin/edit/' + formatURL(product.name)} key={product._id}>
             <CoffeeMod type='edit' coffee={product} fetchData={fetchData} />
           </Route>
         ))}

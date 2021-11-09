@@ -7,6 +7,7 @@ import {CartContext} from '../../Contexts/CartContext';
 import {UserContext} from '../../Contexts/UserContext';
 
 import Dropdown from '../Dropdown/Dropdown';
+import {displayPounds} from '../../Utils/Utils';
 
 
 function Header(props) {
@@ -76,7 +77,7 @@ function Header(props) {
         <li>|</li>
         <li>items: {items}</li>
         <li>|</li>
-        <li>total: {`£${((total*100)/100).toFixed(2)}`}</li>
+        <li>total: {displayPounds(total)}</li>
         <li>|</li>
         <li><Link to='/cart'>your cart</Link></li>
       </ul>

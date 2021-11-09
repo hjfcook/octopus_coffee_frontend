@@ -7,6 +7,7 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import {Link} from 'react-router-dom';
 import {useContext} from 'react';
 import {CartContext} from '../../Contexts/CartContext.jsx';
+import { displayPounds, formatURL } from '../../Utils/Utils';
 
 function CartPage() {
   const cartContext = useContext(CartContext);
@@ -35,10 +36,10 @@ function CartPage() {
           {cartContext.cart.map(product => (
             <tr key={product._id}>
               <td>
-                <Link to={`coffee/${product.name.toLowerCase().replace(/ /g, '-')}`}>{product.name}</Link>
+                <Link to={`coffee/${formatURL(product.name)}`}>{product.name}</Link>
               </td>
               <td>
-                {`£${((product.price*100)/100).toFixed(2)}`}
+                {displayPounds(product.price)}
               </td>
               <td>
                 <input 
@@ -50,7 +51,7 @@ function CartPage() {
                 />
               </td>
               <td>
-                {`£${((product.price*product.quantity*100)/100).toFixed(2)}`}
+                {displayPounds(product.price * product.quantity)}
               </td>
               <td>
                 <FontAwesomeIcon
@@ -70,7 +71,7 @@ function CartPage() {
               Total:
             </th>
             <td>
-              {`£${((total*100)/100).toFixed(2)}`}
+              {displayPounds(total)}
             </td>
             <td></td>
           </tr>

@@ -1,8 +1,9 @@
 import styles from './CoffeeSpotlight.module.css';
 
 import React, {useState} from 'react';
-import {CartContext} from '../../Contexts/CartContext.jsx'
 
+import {CartContext} from '../../Contexts/CartContext'
+import {displayPounds} from '../../Utils/Utils';
 import Button from '../Button/Button';
 
 
@@ -40,7 +41,7 @@ function CoffeeSpotlight(props) {
           </div>
           <div className={styles.priceSection}>
             <h3>
-              {`£${((props.coffee.price*100)/100).toFixed(2)}`}
+              {displayPounds(props.coffee.price)}
             </h3>
             <div>
               <label htmlFor="quantity">Quantity:</label>

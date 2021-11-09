@@ -1,8 +1,10 @@
 import styles from './CoffeeSlot.module.css';
-import React, {useState} from 'react';
 
 import Button from '../Button/Button';
-import {CartContext} from '../../Contexts/CartContext.jsx'
+import {CartContext} from '../../Contexts/CartContext'
+import {displayPounds, formatURL} from '../../Utils/Utils';
+
+import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
 function CoffeeSlot(props) {
@@ -34,13 +36,12 @@ function CoffeeSlot(props) {
           {props.coffee.descriptors.join(', ')}
         </div>
         <div className={styles.coffeePrice}>
-          {`£${((props.coffee.price*100)/100).toFixed(2)}`}
-
+          {displayPounds(props.coffee.price)}
         </div>
         <div className={hovered ? styles.buttonDivHover : styles.buttonDiv}>
           <Button 
             buttonClass='secondary' 
-            onClick={() => history.push('coffee/' + props.coffee.name.toLowerCase().replace(/ /g, '-'))}
+            onClick={() => history.push('coffee/' + formatURL(props.coffee.name))}
           >
             more info
           </Button>
