@@ -4,10 +4,11 @@ import React, {useState, useEffect} from 'react';
 const UserContext = React.createContext();
 
 function UserProvider({children}) {
-  const [user, setUser] = useState({});
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState();
+  // const [loggedIn, setLoggedIn] = useState(false);
 
-  useEffect(() => {
+  const getUser = () => {
+    console.log('usercontext getuser');
     fetch("http://localhost:3000/user", {
       method: "GET",
       headers: {'Content-Type': 'application/json'},
@@ -17,14 +18,37 @@ function UserProvider({children}) {
         // setUser(res);
         console.log(res)
         if (res.loggedOut) {
-          setUser({});
+          setUser({loggedOut: true});
         } else {
           setUser(res);
         }
       });
-  }, [loggedIn]);
+  };
 
-  const value = {user, setUser, loggedIn, setLoggedIn}
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/user", {
+  //     method: "GET",
+  //     headers: {'Content-Type': 'application/json'},
+  //     credentials: 'include'
+  //   }).then((res) => res.json())
+  //     .then(res => {
+  //       // setUser(res);
+  //       console.log(res)
+  //       if (res.loggedOut) {
+  //         setUser({});
+  //       } else {
+  //         setUser(res);
+  //       }
+  //     });
+  // }, [loggedIn]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
+  // });
+
+  // const value = {user, setUser, loggedIn, setLoggedIn, getUser}
+  const value = {user, getUser}
 
   return (
     <UserContext.Provider value={value}>

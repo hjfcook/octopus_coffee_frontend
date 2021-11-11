@@ -8,7 +8,8 @@ function Button(props) {
   };
 
   return (
-    <button className={`${styles.button} ${buttonClasses[props.buttonClass]}`} {...props}>
+    // <button className={`${styles.button} ${buttonClasses[props.buttonClass]}`} {...props}>
+    <button className={`${styles.button} ${buttonClasses[props.buttonClass]}`} onClick={props.onClick} style={props.style} type={props.type} form={props.form}>
       {props.children}
     </button>
   );

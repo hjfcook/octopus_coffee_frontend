@@ -67,10 +67,15 @@ function CoffeePage() {
   ]
 
   useEffect(() => {
-    (async () => {
-      const data = await fetchData();
-      setProductBackup(data);
-    })();
+    let isMounted = true;
+    fetchData().then(data => {
+      if (isMounted) {
+        setProductBackup('name');
+      }
+    });
+    return (
+      () => {isMounted = false}
+    );
   }, [fetchData]);
 
   return (

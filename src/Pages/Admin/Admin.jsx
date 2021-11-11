@@ -12,6 +12,8 @@ import {useEffect} from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import {Switch, Route, useHistory} from 'react-router-dom';
+import { UserContext } from '../../Contexts/UserContext';
+import { useContext } from 'react';
 
 
 function Admin() {
@@ -31,6 +33,7 @@ function Admin() {
   ] = useCoffee();
   
   const history = useHistory();
+  const userContext = useContext(UserContext);
 
   function updateSorting(field) {
     if (sortingField === field) {
@@ -54,11 +57,24 @@ function Admin() {
   }
 
   useEffect(() => {
-    (async () => {
-      await fetchData();
-      setSortingField('name');
-    })();
+    let isMounted = true;
+    fetchData().then(data => {
+      if (isMounted) {
+        setSortingField('name');
+      }
+    });
+    return (
+      () => {isMounted = false}
+    );
   }, [fetchData, setSortingField]);
+
+  useEffect(() => {
+    if (userContext.user) {
+      if (!userContext.user.admin) {
+       history.push('/login');
+      }
+    }
+  }, [userContext, history]);
 
   return (
     <PageTemplate>

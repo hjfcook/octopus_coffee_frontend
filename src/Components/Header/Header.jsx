@@ -34,7 +34,7 @@ function Header(props) {
       .then(res => {
         console.log(res)
         if (res.loggedOut) {
-          userContext.setLoggedIn(false);
+          userContext.getUser();
         }
       });
   };
@@ -50,7 +50,7 @@ function Header(props) {
         : null}
       </ul>
       <ul>
-        {userContext.user.email ?
+        {userContext.user && !userContext.user.loggedOut ?
           <>
             <li>Welcome back, {userContext.user.firstName}</li>
             <li>|</li>
@@ -65,7 +65,7 @@ function Header(props) {
             }
             <li><Link to='/account'>account</Link></li>
             <li>|</li>
-            <li onClick={logout}><a href=''>log out</a></li>
+            <button onClick={logout}>log out</button>
           </>
           :
           <>

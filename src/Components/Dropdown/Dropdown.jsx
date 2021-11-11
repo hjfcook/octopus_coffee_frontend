@@ -54,7 +54,9 @@ function Dropdown(props) {
               :
               <button key={option} onClick={() => {props.action(props.name, option)}}>{option}</button>
             : 
-            <Dropdown level='sub' childType='button' key={option.text} name={option.text} sortOptions={option.subOptions} action={option.action}/>
+            <ul key={option.text}>
+              <Dropdown level='sub' childType='button' key={option.text} name={option.text} sortOptions={option.subOptions} action={option.action}/>
+            </ul>
           ))}
         </div>
       </div>
