@@ -68,9 +68,9 @@ function CoffeePage() {
 
   useEffect(() => {
     let isMounted = true;
-    fetchData().then(data => {
-      if (isMounted) {
-        setProductBackup('name');
+    fetchData().then(res => {
+      if (isMounted && res.status === 'success') {
+        setProductBackup(res.data);
       }
     });
     return (

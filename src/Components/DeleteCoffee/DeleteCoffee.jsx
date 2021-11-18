@@ -17,7 +17,7 @@ function AddCoffee(props) {
     }).then((res) => res.json())
       .then(res => {
         console.log(res);
-        if (res.deleted) {
+        if (res.status === 'success') {
           history.push('/admin');
           props.fetchData();
         }

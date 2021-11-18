@@ -9,8 +9,10 @@ function useCoffee() {
   const fetchData = useCallback(async() => {
     setIsLoading(true);
     const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
-    setCoffeeProducts(dataRead);
     setIsLoading(false);
+    if (dataRead.status === 'success') {
+      setCoffeeProducts(dataRead.data);
+    }
     return dataRead;
   }, []);
 

@@ -16,7 +16,7 @@ function CoffeeMod(props) {
         continent: 'N/A',
         country: 'N/A',
         process: 'N/A',
-        price: '',
+        price: 0,
         roast: 'Light',
         descriptors: ['', '', ''],
         description: ''
@@ -332,7 +332,7 @@ function CoffeeMod(props) {
           <option value="Washed">Washed</option>
         </select>
         <label htmlFor="price">Price:</label>
-        <input value={coffeePrice} type="number" min="0" max="30" step="0.01" onChange={(e) => {setCoffeePrice(e.target.value)}} name="price" className={styles.formElement} /> 
+        <input value={coffeePrice} type="number" min="0" max="30" step="0.01" onChange={(e) => {setCoffeePrice(Number(e.target.value))}} name="price" className={styles.formElement} /> 
         <label htmlFor="roast">Roast:</label>
         <select value={coffeeRoast} onChange={(e) => {setCoffeeRoast(e.target.value)}} name="roast" className={styles.formElement}>
           <option value='Light'>Light</option>
