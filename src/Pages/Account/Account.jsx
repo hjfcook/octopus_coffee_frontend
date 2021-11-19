@@ -1,11 +1,11 @@
 // import styles from './Account.module.css';
 // import React, { useState } from "react";
-import React, {useEffect} from "react";
-import {useHistory} from 'react-router-dom';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-import {UserContext} from '../../Contexts/UserContext'
+import { UserContext } from "../../Contexts/UserContext";
 
-import PageTemplate from '../PageTemplate/PageTemplate';
+import PageTemplate from "../PageTemplate/PageTemplate";
 
 function Account() {
   const userContext = React.useContext(UserContext);
@@ -14,7 +14,7 @@ function Account() {
   useEffect(() => {
     if (userContext.user) {
       if (userContext.user.loggedOut) {
-        history.push('/login');
+        history.push("/login");
       }
     }
   }, [userContext, history]);
@@ -23,14 +23,14 @@ function Account() {
     <PageTemplate>
       <h1>account</h1>
       {/* {userContext.user.email ? */}
-      {typeof userContext.user !== 'undefined' ?
+      {typeof userContext.user !== "undefined" ? (
         <>
           <h3>{`${userContext.user.firstName} ${userContext.user.lastName}`}</h3>
           <h3>{`${userContext.user.email}`}</h3>
         </>
-        :
+      ) : (
         <></>
-      }
+      )}
     </PageTemplate>
   );
 }
