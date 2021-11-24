@@ -1,25 +1,25 @@
-import styles from './CoffeeMod.module.css';
+import styles from "./CoffeeMod.module.css";
 
-import Button from '../Button/Button';
+import Button from "../Button/Button";
 
-import {useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function CoffeeMod(props) {
   const defaults = (() => {
-    if (typeof props.coffee !== 'undefined' ) {
+    if (typeof props.coffee !== "undefined") {
       return props.coffee;
     } else {
       return {
-        _id: '',
-        name: '',
-        continent: 'N/A',
-        country: 'N/A',
-        process: 'N/A',
+        _id: "",
+        name: "",
+        continent: "N/A",
+        country: "N/A",
+        process: "N/A",
         price: 0,
-        roast: 'Light',
-        descriptors: ['', '', ''],
-        description: ''
+        roast: "Light",
+        descriptors: ["", "", ""],
+        description: "",
       };
     }
   })();
@@ -30,17 +30,25 @@ function CoffeeMod(props) {
   const [coffeeProcess, setCoffeeProcess] = useState(defaults.process);
   const [coffeePrice, setCoffeePrice] = useState(defaults.price);
   const [coffeeRoast, setCoffeeRoast] = useState(defaults.roast);
-  const [coffeeDescriptor1, setCoffeeDescriptor1] = useState(defaults.descriptors[0]);
-  const [coffeeDescriptor2, setCoffeeDescriptor2] = useState(defaults.descriptors[1]);
-  const [coffeeDescriptor3, setCoffeeDescriptor3] = useState(defaults.descriptors[2]);
-  const [coffeeDescription, setCoffeeDescription] = useState(defaults.description);
+  const [coffeeDescriptor1, setCoffeeDescriptor1] = useState(
+    defaults.descriptors[0]
+  );
+  const [coffeeDescriptor2, setCoffeeDescriptor2] = useState(
+    defaults.descriptors[1]
+  );
+  const [coffeeDescriptor3, setCoffeeDescriptor3] = useState(
+    defaults.descriptors[2]
+  );
+  const [coffeeDescription, setCoffeeDescription] = useState(
+    defaults.description
+  );
 
   const history = useHistory();
 
   const coffeeAction = () => {
     fetch(`http://localhost:3000/api/coffee/${defaults._id}`, {
-      method: props.type === 'add' ? "POST" : 'PUT',
-      headers: {'Content-Type': 'application/json'},
+      method: props.type === "add" ? "POST" : "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: coffeeName,
         continent: coffeeContinent,
@@ -51,13 +59,14 @@ function CoffeeMod(props) {
         description: coffeeDescription,
         descriptor1: coffeeDescriptor1,
         descriptor2: coffeeDescriptor2,
-        descriptor3: coffeeDescriptor3
+        descriptor3: coffeeDescriptor3,
       }),
-      credentials: 'include'
-    }).then((res) => res.json())
-      .then(res => {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
         console.log(res);
-        history.push('/admin');
+        history.push("/admin");
         props.fetchData();
       });
   };
@@ -65,18 +74,41 @@ function CoffeeMod(props) {
   return (
     <>
       <h1>{props.type} coffee</h1>
-      <form className={styles.addCoffee} action="/api/coffee" method="POST" >
+      <form className={styles.addCoffee} action="/api/coffee" method="POST">
         <label htmlFor="name">Coffee name:</label>
-        <input value={coffeeName} type="text" onChange={(e) => {setCoffeeName(e.target.value)}} name="name" className={styles.formElement} required />
+        <input
+          value={coffeeName}
+          type="text"
+          onChange={(e) => {
+            setCoffeeName(e.target.value);
+          }}
+          name="name"
+          className={styles.formElement}
+          required
+        />
         <label htmlFor="continent">Continent:</label>
-        <select value={coffeeContinent} name="continent" onChange={(e) => {setCoffeeContinent(e.target.value)}} className={styles.formElement}>
+        <select
+          value={coffeeContinent}
+          name="continent"
+          onChange={(e) => {
+            setCoffeeContinent(e.target.value);
+          }}
+          className={styles.formElement}
+        >
           <option value="N/A">N/A (Blended)</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
           <option value="Asia">Asia</option>
         </select>
         <label htmlFor="country">Country:</label>
-        <select value={coffeeCountry} onChange={(e) => {setCoffeeCountry(e.target.value)}} name="country" className={styles.formElement}>
+        <select
+          value={coffeeCountry}
+          onChange={(e) => {
+            setCoffeeCountry(e.target.value);
+          }}
+          name="country"
+          className={styles.formElement}
+        >
           <option value="N/A">N/A (Blended)</option>
           <option value="Afghanistan">Afghanistan</option>
           <option value="Åland Islands">Åland Islands</option>
@@ -109,7 +141,9 @@ function CoffeeMod(props) {
           <option value="Botswana">Botswana</option>
           <option value="Bouvet Island">Bouvet Island</option>
           <option value="Brazil">Brazil</option>
-          <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+          <option value="British Indian Ocean Territory">
+            British Indian Ocean Territory
+          </option>
           <option value="Brunei Darussalam">Brunei Darussalam</option>
           <option value="Bulgaria">Bulgaria</option>
           <option value="Burkina Faso">Burkina Faso</option>
@@ -119,16 +153,22 @@ function CoffeeMod(props) {
           <option value="Canada">Canada</option>
           <option value="Cape Verde">Cape Verde</option>
           <option value="Cayman Islands">Cayman Islands</option>
-          <option value="Central African Republic">Central African Republic</option>
+          <option value="Central African Republic">
+            Central African Republic
+          </option>
           <option value="Chad">Chad</option>
           <option value="Chile">Chile</option>
           <option value="China">China</option>
           <option value="Christmas Island">Christmas Island</option>
-          <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+          <option value="Cocos (Keeling) Islands">
+            Cocos (Keeling) Islands
+          </option>
           <option value="Colombia">Colombia</option>
           <option value="Comoros">Comoros</option>
           <option value="Congo">Congo</option>
-          <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+          <option value="Congo, The Democratic Republic of The">
+            Congo, The Democratic Republic of The
+          </option>
           <option value="Cook Islands">Cook Islands</option>
           <option value="Costa Rica">Costa Rica</option>
           <option value="Cote D'ivoire">Cote D'ivoire</option>
@@ -147,14 +187,18 @@ function CoffeeMod(props) {
           <option value="Eritrea">Eritrea</option>
           <option value="Estonia">Estonia</option>
           <option value="Ethiopia">Ethiopia</option>
-          <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+          <option value="Falkland Islands (Malvinas)">
+            Falkland Islands (Malvinas)
+          </option>
           <option value="Faroe Islands">Faroe Islands</option>
           <option value="Fiji">Fiji</option>
           <option value="Finland">Finland</option>
           <option value="France">France</option>
           <option value="French Guiana">French Guiana</option>
           <option value="French Polynesia">French Polynesia</option>
-          <option value="French Southern Territories">French Southern Territories</option>
+          <option value="French Southern Territories">
+            French Southern Territories
+          </option>
           <option value="Gabon">Gabon</option>
           <option value="Gambia">Gambia</option>
           <option value="Georgia">Georgia</option>
@@ -172,15 +216,21 @@ function CoffeeMod(props) {
           <option value="Guinea-bissau">Guinea-bissau</option>
           <option value="Guyana">Guyana</option>
           <option value="Haiti">Haiti</option>
-          <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
-          <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+          <option value="Heard Island and Mcdonald Islands">
+            Heard Island and Mcdonald Islands
+          </option>
+          <option value="Holy See (Vatican City State)">
+            Holy See (Vatican City State)
+          </option>
           <option value="Honduras">Honduras</option>
           <option value="Hong Kong">Hong Kong</option>
           <option value="Hungary">Hungary</option>
           <option value="Iceland">Iceland</option>
           <option value="India">India</option>
           <option value="Indonesia">Indonesia</option>
-          <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+          <option value="Iran, Islamic Republic of">
+            Iran, Islamic Republic of
+          </option>
           <option value="Iraq">Iraq</option>
           <option value="Ireland">Ireland</option>
           <option value="Isle of Man">Isle of Man</option>
@@ -193,11 +243,15 @@ function CoffeeMod(props) {
           <option value="Kazakhstan">Kazakhstan</option>
           <option value="Kenya">Kenya</option>
           <option value="Kiribati">Kiribati</option>
-          <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+          <option value="Korea, Democratic People's Republic of">
+            Korea, Democratic People's Republic of
+          </option>
           <option value="Korea, Republic of">Korea, Republic of</option>
           <option value="Kuwait">Kuwait</option>
           <option value="Kyrgyzstan">Kyrgyzstan</option>
-          <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+          <option value="Lao People's Democratic Republic">
+            Lao People's Democratic Republic
+          </option>
           <option value="Latvia">Latvia</option>
           <option value="Lebanon">Lebanon</option>
           <option value="Lesotho">Lesotho</option>
@@ -207,7 +261,9 @@ function CoffeeMod(props) {
           <option value="Lithuania">Lithuania</option>
           <option value="Luxembourg">Luxembourg</option>
           <option value="Macao">Macao</option>
-          <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+          <option value="Macedonia, The Former Yugoslav Republic of">
+            Macedonia, The Former Yugoslav Republic of
+          </option>
           <option value="Madagascar">Madagascar</option>
           <option value="Malawi">Malawi</option>
           <option value="Malaysia">Malaysia</option>
@@ -220,7 +276,9 @@ function CoffeeMod(props) {
           <option value="Mauritius">Mauritius</option>
           <option value="Mayotte">Mayotte</option>
           <option value="Mexico">Mexico</option>
-          <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+          <option value="Micronesia, Federated States of">
+            Micronesia, Federated States of
+          </option>
           <option value="Moldova, Republic of">Moldova, Republic of</option>
           <option value="Monaco">Monaco</option>
           <option value="Mongolia">Mongolia</option>
@@ -241,12 +299,16 @@ function CoffeeMod(props) {
           <option value="Nigeria">Nigeria</option>
           <option value="Niue">Niue</option>
           <option value="Norfolk Island">Norfolk Island</option>
-          <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+          <option value="Northern Mariana Islands">
+            Northern Mariana Islands
+          </option>
           <option value="Norway">Norway</option>
           <option value="Oman">Oman</option>
           <option value="Pakistan">Pakistan</option>
           <option value="Palau">Palau</option>
-          <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+          <option value="Palestinian Territory, Occupied">
+            Palestinian Territory, Occupied
+          </option>
           <option value="Panama">Panama</option>
           <option value="Papua New Guinea">Papua New Guinea</option>
           <option value="Paraguay">Paraguay</option>
@@ -264,8 +326,12 @@ function CoffeeMod(props) {
           <option value="Saint Helena">Saint Helena</option>
           <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
           <option value="Saint Lucia">Saint Lucia</option>
-          <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-          <option value="Saint Vincent and The Grenadines">Saint Vincent and The Grenadines</option>
+          <option value="Saint Pierre and Miquelon">
+            Saint Pierre and Miquelon
+          </option>
+          <option value="Saint Vincent and The Grenadines">
+            Saint Vincent and The Grenadines
+          </option>
           <option value="Samoa">Samoa</option>
           <option value="San Marino">San Marino</option>
           <option value="Sao Tome and Principe">Sao Tome and Principe</option>
@@ -280,7 +346,9 @@ function CoffeeMod(props) {
           <option value="Solomon Islands">Solomon Islands</option>
           <option value="Somalia">Somalia</option>
           <option value="South Africa">South Africa</option>
-          <option value="South Georgia and The South Sandwich Islands">South Georgia and The South Sandwich Islands</option>
+          <option value="South Georgia and The South Sandwich Islands">
+            South Georgia and The South Sandwich Islands
+          </option>
           <option value="Spain">Spain</option>
           <option value="Sri Lanka">Sri Lanka</option>
           <option value="Sudan">Sudan</option>
@@ -292,7 +360,9 @@ function CoffeeMod(props) {
           <option value="Syrian Arab Republic">Syrian Arab Republic</option>
           <option value="Taiwan">Taiwan</option>
           <option value="Tajikistan">Tajikistan</option>
-          <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+          <option value="Tanzania, United Republic of">
+            Tanzania, United Republic of
+          </option>
           <option value="Thailand">Thailand</option>
           <option value="Timor-leste">Timor-leste</option>
           <option value="Togo">Togo</option>
@@ -302,20 +372,26 @@ function CoffeeMod(props) {
           <option value="Tunisia">Tunisia</option>
           <option value="Turkey">Turkey</option>
           <option value="Turkmenistan">Turkmenistan</option>
-          <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+          <option value="Turks and Caicos Islands">
+            Turks and Caicos Islands
+          </option>
           <option value="Tuvalu">Tuvalu</option>
           <option value="Uganda">Uganda</option>
           <option value="Ukraine">Ukraine</option>
           <option value="United Arab Emirates">United Arab Emirates</option>
           <option value="United Kingdom">United Kingdom</option>
           <option value="United States">United States</option>
-          <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+          <option value="United States Minor Outlying Islands">
+            United States Minor Outlying Islands
+          </option>
           <option value="Uruguay">Uruguay</option>
           <option value="Uzbekistan">Uzbekistan</option>
           <option value="Vanuatu">Vanuatu</option>
           <option value="Venezuela">Venezuela</option>
           <option value="Viet Nam">Viet Nam</option>
-          <option value="Virgin Islands, British">Virgin Islands, British</option>
+          <option value="Virgin Islands, British">
+            Virgin Islands, British
+          </option>
           <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
           <option value="Wallis and Futuna">Wallis and Futuna</option>
           <option value="Western Sahara">Western Sahara</option>
@@ -324,7 +400,14 @@ function CoffeeMod(props) {
           <option value="Zimbabwe">Zimbabwe</option>
         </select>
         <label htmlFor="process">Process:</label>
-        <select value={coffeeProcess} onChange={(e) => {setCoffeeProcess(e.target.value)}} name="process" className={styles.formElement}>
+        <select
+          value={coffeeProcess}
+          onChange={(e) => {
+            setCoffeeProcess(e.target.value);
+          }}
+          name="process"
+          className={styles.formElement}
+        >
           <option value="N/A">N/A (Blended)</option>
           <option value="Honey">Honey</option>
           <option value="Natural">Natural</option>
@@ -332,32 +415,100 @@ function CoffeeMod(props) {
           <option value="Washed">Washed</option>
         </select>
         <label htmlFor="price">Price:</label>
-        <input value={coffeePrice} type="number" min="0" max="30" step="0.01" onChange={(e) => {setCoffeePrice(Number(e.target.value))}} name="price" className={styles.formElement} /> 
+        <input
+          value={coffeePrice}
+          type="number"
+          min="0"
+          max="30"
+          step="0.01"
+          onChange={(e) => {
+            setCoffeePrice(Number(e.target.value));
+          }}
+          name="price"
+          className={styles.formElement}
+        />
         <label htmlFor="roast">Roast:</label>
-        <select value={coffeeRoast} onChange={(e) => {setCoffeeRoast(e.target.value)}} name="roast" className={styles.formElement}>
-          <option value='Light'>Light</option>
-          <option value='Medium'>Medium</option>
-          <option value='Medium-dark'>Medium-dark</option>
-          <option value='Dark'>Dark</option>
+        <select
+          value={coffeeRoast}
+          onChange={(e) => {
+            setCoffeeRoast(e.target.value);
+          }}
+          name="roast"
+          className={styles.formElement}
+        >
+          <option value="Light">Light</option>
+          <option value="Medium">Medium</option>
+          <option value="Medium-dark">Medium-dark</option>
+          <option value="Dark">Dark</option>
         </select>
         <label htmlFor="descriptor1">Flavour descriptor 1:</label>
-        <input value={coffeeDescriptor1} type="text" onChange={(e) => {setCoffeeDescriptor1(e.target.value)}} name="descriptor1" className={styles.formElement} />
+        <input
+          value={coffeeDescriptor1}
+          type="text"
+          onChange={(e) => {
+            setCoffeeDescriptor1(e.target.value);
+          }}
+          name="descriptor1"
+          className={styles.formElement}
+        />
         <label htmlFor="descriptor2">Flavour descriptor 2:</label>
-        <input value={coffeeDescriptor2} type="text" onChange={(e) => {setCoffeeDescriptor2(e.target.value)}} name="descriptor2" className={styles.formElement} />
+        <input
+          value={coffeeDescriptor2}
+          type="text"
+          onChange={(e) => {
+            setCoffeeDescriptor2(e.target.value);
+          }}
+          name="descriptor2"
+          className={styles.formElement}
+        />
         <label htmlFor="descriptor3">Flavour descriptor 3:</label>
-        <input value={coffeeDescriptor3} type="text" onChange={(e) => {setCoffeeDescriptor3(e.target.value)}} name="descriptor3" className={styles.formElement} />
+        <input
+          value={coffeeDescriptor3}
+          type="text"
+          onChange={(e) => {
+            setCoffeeDescriptor3(e.target.value);
+          }}
+          name="descriptor3"
+          className={styles.formElement}
+        />
         <label htmlFor="description">Description:</label>
-        <textarea  value={coffeeDescription} type="text" onChange={(e) => {setCoffeeDescription(e.target.value)}} name="description" className={`${styles.formElement} ${styles.description}`} />
+        <textarea
+          value={coffeeDescription}
+          type="text"
+          onChange={(e) => {
+            setCoffeeDescription(e.target.value);
+          }}
+          name="description"
+          className={`${styles.formElement} ${styles.description}`}
+        />
       </form>
       <div className={styles.buttonDiv}>
-        {props.type === 'edit' ?
-        <Button buttonClass='danger' onClick={() => history.push('/admin/delete/' + props.coffee._id)}>delete</Button>
-        :
-        <div></div>
-        }
+        {props.type === "edit" ? (
+          <Button
+            buttonClass="danger"
+            onClick={() =>
+              history.push("/admin/coffee/delete/" + props.coffee._id)
+            }
+          >
+            delete
+          </Button>
+        ) : (
+          <div></div>
+        )}
         <div className={styles.rightButtons}>
-          <Button buttonClass='secondary' onClick={() => history.push('/admin')}>cancel</Button>
-          <Button buttonClass='primary' onClick={coffeeAction} style={{'marginLeft': '0.5rem'}}>save</Button>
+          <Button
+            buttonClass="secondary"
+            onClick={() => history.push("/admin/coffee")}
+          >
+            cancel
+          </Button>
+          <Button
+            buttonClass="primary"
+            onClick={coffeeAction}
+            style={{ marginLeft: "0.5rem" }}
+          >
+            save
+          </Button>
         </div>
       </div>
     </>

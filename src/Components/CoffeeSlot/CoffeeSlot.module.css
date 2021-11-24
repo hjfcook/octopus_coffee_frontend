@@ -15,7 +15,7 @@
 }
 
 .coffeeSlot::before {
-  content: '';
+  content: "";
   display: block;
   padding-top: 100%;
 }
@@ -66,7 +66,7 @@
 }
 
 .slotHovered {
-  background-image: url('https://source.unsplash.com/PX1IrPsimHE');
+  background-image: url("https://source.unsplash.com/PX1IrPsimHE");
   background-size: cover;
   color: white;
 }
