@@ -10,6 +10,7 @@ function AdminTabs() {
       <ul className={styles.tabs}>
         {tabs.map((tab) => (
           <li
+            key={tab}
             className={
               location.pathname === `/admin/${tab.toLowerCase()}`
                 ? styles.selectedTab

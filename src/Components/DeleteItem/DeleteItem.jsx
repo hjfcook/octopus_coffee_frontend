@@ -35,7 +35,7 @@ function DeleteItem(props) {
         <Button
           buttonClass="secondary"
           onClick={() => {
-            if (props.itemType === "user") {
+            if (props.itemType === "users") {
               history.push(`/admin/${props.itemType}/edit/` + props.item._id);
             } else {
               history.push(

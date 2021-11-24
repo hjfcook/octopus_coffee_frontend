@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function CoffeeMod(props) {
+  const history = useHistory();
+
   const defaults = (() => {
     if (typeof props.coffee !== "undefined") {
       return props.coffee;
@@ -17,6 +19,7 @@ function CoffeeMod(props) {
         country: "N/A",
         process: "N/A",
         price: 0,
+        // price: "",
         roast: "Light",
         descriptors: ["", "", ""],
         description: "",
@@ -43,7 +46,66 @@ function CoffeeMod(props) {
     defaults.description
   );
 
-  const history = useHistory();
+  // just validating for most likely problems in the FE.
+  // less likely things such as incorrect items in dropdown will get
+  // caught in the BE (errors returned and displayed)
+  const [errors, setErrors] = useState({});
+  const validateCoffee = () => {
+    const errors = {};
+    if (!coffeeName) {
+      errors.name = "A name must be supplied";
+    } else if (coffeeName.length > 20) {
+      errors.name = "The supplied name must be <= 20 characters long";
+    }
+    if (!coffeePrice) {
+      errors.price = "A price must be supplied";
+    } else if (coffeePrice < 0 || coffeePrice > 30) {
+      errors.price = "The price must be a number between 0 and 30";
+    } else {
+      const splitPrice = String(coffeePrice).split(".");
+      if (splitPrice.length > 1) {
+        if (splitPrice[1].length > 2) {
+          errors.price =
+            "The price must be a number with 2 decimal places or less";
+        }
+      }
+    }
+    if (!coffeeDescriptor1) {
+      errors.descriptor1 = "3 descriptors must be supplied";
+    } else if (coffeeDescriptor1.length > 15) {
+      errors.descriptor1 =
+        "The supplied descriptor must be <= 15 characters long";
+    } else if (coffeeDescriptor1.match(/[^\p{L} -]+/gu)) {
+      errors.descriptor1 =
+        "The supplied descriptor contains invalid characters";
+    }
+    if (!coffeeDescriptor2) {
+      errors.descriptor2 = "3 descriptors must be supplied";
+    } else if (coffeeDescriptor2.length > 15) {
+      errors.descriptor2 =
+        "The supplied descriptor must be <= 15 characters long";
+    } else if (coffeeDescriptor2.match(/[^\p{L} -]+/gu)) {
+      errors.descriptor2 =
+        "The supplied descriptor contains invalid characters";
+    }
+    if (!coffeeDescriptor3) {
+      errors.descriptor3 = "3 descriptors must be supplied";
+    } else if (coffeeDescriptor3.length > 15) {
+      errors.descriptor3 =
+        "The supplied descriptor must be <= 15 characters long";
+    } else if (coffeeDescriptor3.match(/[^\p{L} -]+/gu)) {
+      errors.descriptor3 =
+        "The supplied descriptor contains invalid characters";
+    }
+    if (!coffeeDescription) {
+      errors.description = "A description must be supplied";
+    }
+    if (Object.keys(errors).length === 0) {
+      coffeeAction();
+    } else {
+      setErrors(errors);
+    }
+  };
 
   const coffeeAction = () => {
     fetch(`http://localhost:3000/api/coffee/${defaults._id}`, {
@@ -66,15 +128,19 @@ function CoffeeMod(props) {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        history.push("/admin");
-        props.fetchData();
+        if (res.status === "success") {
+          history.push("/admin");
+          props.fetchData();
+        } else if (res.status === "fail") {
+          setErrors(res.data);
+        }
       });
   };
 
   return (
     <>
       <h1>{props.type} coffee</h1>
-      <form className={styles.addCoffee} action="/api/coffee" method="POST">
+      <form className={styles.addCoffee}>
         <label htmlFor="name">Coffee name:</label>
         <input
           value={coffeeName}
@@ -83,9 +149,15 @@ function CoffeeMod(props) {
             setCoffeeName(e.target.value);
           }}
           name="name"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("name") ? styles.errorElement : ""}`
+          }
           required
         />
+        {errors.hasOwnProperty("name") ? (
+          <span className={styles.errorMessage}>{errors.name}</span>
+        ) : null}
         <label htmlFor="continent">Continent:</label>
         <select
           value={coffeeContinent}
@@ -93,13 +165,19 @@ function CoffeeMod(props) {
           onChange={(e) => {
             setCoffeeContinent(e.target.value);
           }}
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("continent") ? styles.errorElement : ""}`
+          }
         >
           <option value="N/A">N/A (Blended)</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
           <option value="Asia">Asia</option>
         </select>
+        {errors.hasOwnProperty("continent") ? (
+          <span className={styles.errorMessage}>{errors.continent}</span>
+        ) : null}
         <label htmlFor="country">Country:</label>
         <select
           value={coffeeCountry}
@@ -107,7 +185,10 @@ function CoffeeMod(props) {
             setCoffeeCountry(e.target.value);
           }}
           name="country"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("country") ? styles.errorElement : ""}`
+          }
         >
           <option value="N/A">N/A (Blended)</option>
           <option value="Afghanistan">Afghanistan</option>
@@ -399,6 +480,9 @@ function CoffeeMod(props) {
           <option value="Zambia">Zambia</option>
           <option value="Zimbabwe">Zimbabwe</option>
         </select>
+        {errors.hasOwnProperty("country") ? (
+          <span className={styles.errorMessage}>{errors.country}</span>
+        ) : null}
         <label htmlFor="process">Process:</label>
         <select
           value={coffeeProcess}
@@ -406,7 +490,10 @@ function CoffeeMod(props) {
             setCoffeeProcess(e.target.value);
           }}
           name="process"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("process") ? styles.errorElement : ""}`
+          }
         >
           <option value="N/A">N/A (Blended)</option>
           <option value="Honey">Honey</option>
@@ -414,6 +501,9 @@ function CoffeeMod(props) {
           <option value="Pulped Natural">Pulped Natural</option>
           <option value="Washed">Washed</option>
         </select>
+        {errors.hasOwnProperty("process") ? (
+          <span className={styles.errorMessage}>{errors.process}</span>
+        ) : null}
         <label htmlFor="price">Price:</label>
         <input
           value={coffeePrice}
@@ -425,8 +515,14 @@ function CoffeeMod(props) {
             setCoffeePrice(Number(e.target.value));
           }}
           name="price"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("price") ? styles.errorElement : ""}`
+          }
         />
+        {errors.hasOwnProperty("price") ? (
+          <span className={styles.errorMessage}>{errors.price}</span>
+        ) : null}
         <label htmlFor="roast">Roast:</label>
         <select
           value={coffeeRoast}
@@ -434,13 +530,19 @@ function CoffeeMod(props) {
             setCoffeeRoast(e.target.value);
           }}
           name="roast"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("roast") ? styles.errorElement : ""}`
+          }
         >
           <option value="Light">Light</option>
           <option value="Medium">Medium</option>
           <option value="Medium-dark">Medium-dark</option>
           <option value="Dark">Dark</option>
         </select>
+        {errors.hasOwnProperty("roast") ? (
+          <span className={styles.errorMessage}>{errors.roast}</span>
+        ) : null}
         <label htmlFor="descriptor1">Flavour descriptor 1:</label>
         <input
           value={coffeeDescriptor1}
@@ -449,8 +551,16 @@ function CoffeeMod(props) {
             setCoffeeDescriptor1(e.target.value);
           }}
           name="descriptor1"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${
+              errors.hasOwnProperty("descriptor1") ? styles.errorElement : ""
+            }`
+          }
         />
+        {errors.hasOwnProperty("descriptor1") ? (
+          <span className={styles.errorMessage}>{errors.descriptor1}</span>
+        ) : null}
         <label htmlFor="descriptor2">Flavour descriptor 2:</label>
         <input
           value={coffeeDescriptor2}
@@ -459,8 +569,16 @@ function CoffeeMod(props) {
             setCoffeeDescriptor2(e.target.value);
           }}
           name="descriptor2"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${
+              errors.hasOwnProperty("descriptor2") ? styles.errorElement : ""
+            }`
+          }
         />
+        {errors.hasOwnProperty("descriptor2") ? (
+          <span className={styles.errorMessage}>{errors.descriptor2}</span>
+        ) : null}
         <label htmlFor="descriptor3">Flavour descriptor 3:</label>
         <input
           value={coffeeDescriptor3}
@@ -469,8 +587,16 @@ function CoffeeMod(props) {
             setCoffeeDescriptor3(e.target.value);
           }}
           name="descriptor3"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${
+              errors.hasOwnProperty("descriptor3") ? styles.errorElement : ""
+            }`
+          }
         />
+        {errors.hasOwnProperty("descriptor3") ? (
+          <span className={styles.errorMessage}>{errors.descriptor3}</span>
+        ) : null}
         <label htmlFor="description">Description:</label>
         <textarea
           value={coffeeDescription}
@@ -479,8 +605,18 @@ function CoffeeMod(props) {
             setCoffeeDescription(e.target.value);
           }}
           name="description"
-          className={`${styles.formElement} ${styles.description}`}
+          // className={`${styles.formElement} ${styles.description}`}
+          className={
+            styles.formElement +
+            ` ${styles.description}` +
+            ` ${
+              errors.hasOwnProperty("description") ? styles.errorElement : ""
+            }`
+          }
         />
+        {errors.hasOwnProperty("description") ? (
+          <span className={styles.errorMessage}>{errors.description}</span>
+        ) : null}
       </form>
       <div className={styles.buttonDiv}>
         {props.type === "edit" ? (
@@ -504,7 +640,11 @@ function CoffeeMod(props) {
           </Button>
           <Button
             buttonClass="primary"
-            onClick={coffeeAction}
+            // onClick={coffeeAction}
+            // onClick={test}
+            onClick={() => {
+              validateCoffee();
+            }}
             style={{ marginLeft: "0.5rem" }}
           >
             save

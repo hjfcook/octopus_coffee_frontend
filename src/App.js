@@ -33,22 +33,29 @@ function App() {
                 <CoffeePage />
               </Route>
               <Route path="/subscriptions">
-                <h1 style={{ color: "white", margin: 0 }}>subscriptions</h1>
+                <h1 style={{ color: "black", margin: 0 }}>
+                  subscriptions - coming soon
+                </h1>
               </Route>
               <Route path="/equipment">
-                <h1 style={{ color: "white", margin: 0 }}>equipment</h1>
+                <h1 style={{ color: "black", margin: 0 }}>
+                  equipment - coming soon
+                </h1>
               </Route>
               <Route path="/merchandise">
-                <h1 style={{ color: "white", margin: 0 }}>merchandise</h1>
-              </Route>
-              <Route path="/wholesale">
-                <h1 style={{ color: "white", margin: 0 }}>wholesale</h1>
+                <h1 style={{ color: "black", margin: 0 }}>
+                  merchandise - coming soon
+                </h1>
               </Route>
               <Route path="/shipping">
-                <h1 style={{ color: "white", margin: 0 }}>shipping</h1>
+                <h1 style={{ color: "black", margin: 0 }}>
+                  shipping - coming soon
+                </h1>
               </Route>
               <Route path="/about">
-                <h1 style={{ color: "white", margin: 0 }}>about</h1>
+                <h1 style={{ color: "black", margin: 0 }}>
+                  about - coming soon
+                </h1>
               </Route>
               <Route path="/cart">
                 <CartPage />
@@ -66,6 +73,9 @@ function App() {
               </Route>
               <Route path="/admin">
                 <Admin />
+              </Route>
+              <Route path="*">
+                <Redirect to="/coffee" />
               </Route>
             </Switch>
           </div>

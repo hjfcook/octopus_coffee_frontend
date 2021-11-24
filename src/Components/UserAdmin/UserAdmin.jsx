@@ -2,13 +2,10 @@ import styles from "./UserAdmin.module.css";
 
 import AdminTabs from "../../Components/AdminTabs/AdminTabs";
 import DeleteItem from "../DeleteItem/DeleteItem";
-import CoffeeMod from "../../Components/CoffeeMod/CoffeeMod";
 import UserMod from "../../Components/UserMod/UserMod";
-import Button from "../../Components/Button/Button";
+// import Button from "../../Components/Button/Button";
 import useData from "../../Hooks/useData";
-import { displayPounds, formatURL } from "../../Utils/Utils";
 
-// import {useState, useEffect, useCallback} from 'react';
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";

@@ -6,6 +6,8 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function CoffeeMod(props) {
+  const history = useHistory();
+
   const defaults = (() => {
     if (typeof props.user !== "undefined") {
       return props.user;
@@ -25,9 +27,37 @@ function CoffeeMod(props) {
   const [lastName, setLastName] = useState(defaults.lastName);
   const [admin, setAdmin] = useState(defaults.admin);
 
-  const history = useHistory();
+  const [errors, setErrors] = useState({});
+  const validateUser = () => {
+    const errors = {};
 
-  const coffeeAction = () => {
+    if (!email) {
+      errors.email = "An email address must be supplied";
+    } else if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      errors.email = "The supplied email address must be valid";
+    }
+    if (!firstName) {
+      errors.firstName = "A first name must be supplied";
+    } else if (firstName.length > 20) {
+      errors.firstName = "The supplied name must be <= 20 characters long";
+    } else if (firstName.match(/[^\p{L} -]+/u)) {
+      errors.firstName = "The supplied name contains invalid characters";
+    }
+    if (!lastName) {
+      errors.lastName = "A last name must be supplied";
+    } else if (lastName.length > 20) {
+      errors.lastName = "The supplied name must be <= 20 characters long";
+    } else if (lastName.match(/[^\p{L} -]+/u)) {
+      errors.lastName = "The supplied name contains invalid characters";
+    }
+    if (Object.keys(errors).length === 0) {
+      userAction();
+    } else {
+      setErrors(errors);
+    }
+  };
+
+  const userAction = () => {
     fetch(`http://localhost:3000/api/users/${defaults._id}`, {
       method: props.type === "add" ? "POST" : "PUT",
       headers: { "Content-Type": "application/json" },
@@ -42,8 +72,12 @@ function CoffeeMod(props) {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
-        history.push("/admin/users");
-        props.fetchData();
+        if (res.status === "success") {
+          history.push("/admin/users");
+          props.fetchData();
+        } else if (res.status === "fail") {
+          setErrors(res.data);
+        }
       });
   };
 
@@ -59,9 +93,15 @@ function CoffeeMod(props) {
             setEmail(e.target.value);
           }}
           name="email"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("email") ? styles.errorElement : ""}`
+          }
           required
         />
+        {errors.hasOwnProperty("email") ? (
+          <span className={styles.errorMessage}>{errors.email}</span>
+        ) : null}
         <label htmlFor="first-name">First name:</label>
         <input
           value={firstName}
@@ -70,9 +110,15 @@ function CoffeeMod(props) {
             setFirstName(e.target.value);
           }}
           name="first-name"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("firstName") ? styles.errorElement : ""}`
+          }
           required
         />
+        {errors.hasOwnProperty("firstName") ? (
+          <span className={styles.errorMessage}>{errors.firstName}</span>
+        ) : null}
         <label htmlFor="last-name">Last name:</label>
         <input
           value={lastName}
@@ -81,21 +127,33 @@ function CoffeeMod(props) {
             setLastName(e.target.value);
           }}
           name="last-name"
-          className={styles.formElement}
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("lastName") ? styles.errorElement : ""}`
+          }
           required
         />
+        {errors.hasOwnProperty("lastName") ? (
+          <span className={styles.errorMessage}>{errors.lastName}</span>
+        ) : null}
         <label htmlFor="admin">Admin:</label>
         <select
           value={admin}
           onChange={(e) => {
             setAdmin(e.target.value === "true");
           }}
-          name="country"
-          className={styles.formElement}
+          name="admin"
+          className={
+            styles.formElement +
+            ` ${errors.hasOwnProperty("admin") ? styles.errorElement : ""}`
+          }
         >
           <option value={true}>True</option>
           <option value={false}>False</option>
         </select>
+        {errors.hasOwnProperty("admin") ? (
+          <span className={styles.errorMessage}>{errors.admin}</span>
+        ) : null}
       </form>
       <div className={styles.buttonDiv}>
         {props.type === "edit" ? (
@@ -119,7 +177,9 @@ function CoffeeMod(props) {
           </Button>
           <Button
             buttonClass="primary"
-            onClick={coffeeAction}
+            onClick={() => {
+              validateUser();
+            }}
             style={{ marginLeft: "0.5rem" }}
           >
             save

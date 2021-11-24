@@ -19,19 +19,30 @@
   height: 30px;
   padding: 0;
   margin: 0.3rem 0 1rem 0;
-  -ms-box-sizing:content-box;
-  -moz-box-sizing:content-box;
-  -webkit-box-sizing:content-box; 
-  box-sizing:content-box;
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
   border: 1px solid grey;
   background-color: white;
   border-radius: 0px;
 }
 
+.errorElement {
+  border-color: #c01f02;
+}
+
+.errorMessage {
+  /* color: red; */
+  font-size: 0.7rem;
+  color: #c01f02;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .description {
   height: 10rem;
   /* text-align: left; */
-  
 }
 
 .buttonDiv {

@@ -16,7 +16,6 @@
   margin-top: auto;
 }
 
-
 .section {
   /* border: 1px solid black; */
   /* border-top: 1px solid black; */
@@ -90,4 +89,8 @@
 
 .icon:hover {
   color: #02a3c0;
+}
+
+.socialMedia a {
+  color: black;
 }

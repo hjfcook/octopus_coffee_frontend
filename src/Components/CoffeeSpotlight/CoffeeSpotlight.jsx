@@ -1,11 +1,11 @@
-import styles from './CoffeeSpotlight.module.css';
+import styles from "./CoffeeSpotlight.module.css";
 
-import React, {useState} from 'react';
+import React, { useState } from "react";
 
-import {CartContext} from '../../Contexts/CartContext'
-import {displayPounds} from '../../Utils/Utils';
-import Button from '../Button/Button';
-
+import { CartContext } from "../../Contexts/CartContext";
+import { displayPounds } from "../../Utils/Utils";
+import Button from "../Button/Button";
+import coffeeImage from "../../Images/coffee.jpeg";
 
 function CoffeeSpotlight(props) {
   const [quantity, setQuantity] = useState(1);
@@ -13,39 +13,28 @@ function CoffeeSpotlight(props) {
 
   const handleChange = (event) => {
     setQuantity(Number(event.target.value));
-  }
+  };
 
   return (
     <div className={styles.coffeeSpotlight}>
       <div className={styles.topBlock}>
-        <img src='https://images.unsplash.com/photo-1515471897120-85416077e011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit' alt='coffee beans in a bag'/>
+        {/* <img src='https://images.unsplash.com/photo-1515471897120-85416077e011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit' alt='coffee beans in a bag'/> */}
+        <img src={coffeeImage} alt="coffee beans in a bag" />
         <div className={styles.rightSection}>
           <div>
-            <h1>
-              {props.coffee.name}
-            </h1>
-            <h2>
-              {props.coffee.country}
-            </h2>
-            <h4>
-              {props.coffee.descriptors.join(', ')}
-            </h4>
+            <h1>{props.coffee.name}</h1>
+            <h2>{props.coffee.country}</h2>
+            <h4>{props.coffee.descriptors.join(", ")}</h4>
           </div>
           <div>
-            <p>
-              Process: {props.coffee.process}
-            </p>
-            <p>
-              Roast: {props.coffee.roast}
-            </p>
+            <p>Process: {props.coffee.process}</p>
+            <p>Roast: {props.coffee.roast}</p>
           </div>
           <div className={styles.priceSection}>
-            <h3>
-              {displayPounds(props.coffee.price)}
-            </h3>
+            <h3>{displayPounds(props.coffee.price)}</h3>
             <div>
               <label htmlFor="quantity">Quantity:</label>
-              <br/>
+              <br />
               <select name="quantity" id="quantity" onChange={handleChange}>
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -54,10 +43,10 @@ function CoffeeSpotlight(props) {
                 <option value="5">5</option>
               </select>
             </div>
-            <Button 
-              buttonClass='primary' 
+            <Button
+              buttonClass="primary"
               onClick={() => {
-                cartContext.addToCart(props.coffee, quantity)
+                cartContext.addToCart(props.coffee, quantity);
               }}
             >
               add to cart
@@ -65,9 +54,7 @@ function CoffeeSpotlight(props) {
           </div>
         </div>
       </div>
-      <p className={styles.description}>
-        {props.coffee.description}
-      </p>
+      <p className={styles.description}>{props.coffee.description}</p>
     </div>
   );
 }

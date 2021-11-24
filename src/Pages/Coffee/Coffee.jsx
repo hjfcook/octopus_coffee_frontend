@@ -6,7 +6,7 @@ import CoffeeSpotlight from "../../Components/CoffeeSpotlight/CoffeeSpotlight.js
 
 // import {useState, useEffect, useCallback} from 'react';
 import { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import useCoffee from "../../Hooks/useCoffee";
 
@@ -121,6 +121,9 @@ function CoffeePage() {
             <CoffeeSpotlight name={coffee.name} coffee={coffee} />
           </Route>
         ))}
+        {/* <Route path="/coffee/*">
+          <Redirect to="/coffee" />
+        </Route> */}
       </Switch>
       <Footer />
     </div>

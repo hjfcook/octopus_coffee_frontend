@@ -4,15 +4,11 @@ import Button from "../Button/Button";
 import { CartContext } from "../../Contexts/CartContext";
 import { displayPounds, formatURL } from "../../Utils/Utils";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function CoffeeSlot(props) {
   const [hovered, setHovered] = useState(false);
-
-  // const hoverHandler = () => {
-  //   setHovered((prevHovered) => !prevHovered);
-  // };
 
   const cartContext = React.useContext(CartContext);
   const history = useHistory();
@@ -20,8 +16,6 @@ function CoffeeSlot(props) {
   return (
     <div
       className={styles.coffeeSlot + ` ${hovered ? styles.slotHovered : ""}`}
-      // onMouseEnter={hoverHandler}
-      // onMouseLeave={hoverHandler}
       onMouseEnter={() => {
         setHovered(true);
       }}

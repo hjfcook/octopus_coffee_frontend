@@ -33,11 +33,11 @@ function Admin() {
           <CoffeeAdmin />
         </Route>
 
-        <Route path="/admin/equipment">
+        <Route exact path="/admin/equipment">
           <h1>admin</h1>
           <AdminTabs />
         </Route>
-        <Route path="/admin/merchandise">
+        <Route exact path="/admin/merchandise">
           <h1>admin</h1>
           <AdminTabs />
         </Route>
@@ -46,6 +46,9 @@ function Admin() {
           <AdminTabs /> */}
           <UserAdmin />
         </Route>
+        {/* <Route path="/admin/*">
+          <Redirect to="/admin" />
+        </Route> */}
       </Switch>
     </PageTemplate>
   );
