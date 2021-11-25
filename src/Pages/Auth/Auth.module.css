@@ -37,6 +37,12 @@
   width: 300px;
 }
 
+@media (max-width: 380px) {
+  .form input {
+    width: 280px;
+  }
+}
+
 .buttonDiv {
   text-align: right;
   margin-bottom: 1rem;

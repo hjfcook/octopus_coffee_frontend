@@ -2,6 +2,18 @@
   margin-top: 4rem;
 }
 
+@media (max-width: 400px) {
+  .tabContainer {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 350px) {
+  .tabContainer {
+    font-size: 12px;
+  }
+}
+
 .tabs {
   margin: 0;
   padding: 0;

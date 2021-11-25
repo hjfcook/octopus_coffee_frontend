@@ -14,6 +14,100 @@
   z-index: 1;
 
   padding-right: 0.5rem;
+  /* font-weight: bold; */
+}
+
+@media (max-width: 1300px) {
+  .header {
+    left: 13rem;
+    width: calc(100% - 14rem - 1.5rem);
+  }
+}
+
+@media (max-width: 1140px) {
+  .header {
+    left: 11rem;
+    width: calc(100% - 12rem - 1.5rem);
+  }
+  .welcome {
+    display: none !important;
+  }
+}
+
+@media (max-width: 970px) {
+  .header {
+    left: 3.5rem;
+    width: calc(100% - 5rem);
+  }
+  .welcome {
+    display: none !important;
+  }
+}
+
+/* height: 5rem;
+    width: 100%;
+    left: 0;
+    line-height: 2rem;
+    z-index: 3; */
+
+@media (max-width: 813px) {
+  .header {
+    left: 3.5rem;
+    width: calc(100% - 4rem);
+  }
+  .siteItems {
+    top: 1.5rem;
+    right: 1rem;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    line-height: 2.5rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+
+    /* width: calc(100% - 3rem);
+    height: calc(100% - 3.5rem); */
+
+    width: 280px;
+    /* height: 440px; */
+    line-height: 70px;
+    padding-top: 15px !important;
+    padding-bottom: 35px !important;
+
+    /* color: white;
+    background-color: #232323; */
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .divider {
+    display: none !important;
+  }
+
+  .header button {
+    height: 70px;
+  }
+}
+
+.expandBox {
+  height: 2.5rem;
+  width: 2.5rem;
+  position: fixed;
+  right: 0rem;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 814px) {
+  .expandBox {
+    display: none;
+  }
 }
 
 .header ul {
@@ -25,4 +119,22 @@
   display: inline-block;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.header button {
+  border: none;
+  background-color: white;
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen"; */
+  font-family: Cantarell;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+
+  /* padding: 8px; */
+}
+
+.header a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
 }

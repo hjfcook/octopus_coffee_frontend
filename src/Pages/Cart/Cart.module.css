@@ -16,6 +16,20 @@
   border-right: 1px solid rgb(173, 173, 173); */
 }
 
+@media (max-width: 700px) {
+  .cart {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .cart {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 .cart thead th {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -46,41 +60,41 @@
   text-align: right;
 }
 
-.cart  thead th:nth-child(4) {
+.cart thead th:nth-child(4) {
   width: 22.5%;
   text-align: right;
 }
 
-.cart  thead th:nth-child(5) {
+.cart thead th:nth-child(5) {
   width: 12.5%;
   text-align: right;
 }
 
-.cart  tbody td:nth-child(1) {
+.cart tbody td:nth-child(1) {
   text-align: left;
 }
 
-.cart  tbody td:nth-child(2) {
+.cart tbody td:nth-child(2) {
   text-align: right;
 }
 
-.cart  tbody td:nth-child(3) {
+.cart tbody td:nth-child(3) {
   text-align: right;
 }
 
-.cart  tbody td:nth-child(4) {
+.cart tbody td:nth-child(4) {
   text-align: right;
 }
 
-.cart  tbody td:nth-child(5) {
+.cart tbody td:nth-child(5) {
   text-align: right;
 }
 
-.cart  tfoot th:nth-child(2) {
+.cart tfoot th:nth-child(2) {
   text-align: right;
 }
 
-.cart  tfoot td:nth-child(3) {
+.cart tfoot td:nth-child(3) {
   text-align: right;
 }
 
@@ -95,5 +109,39 @@
 }
 
 .deleteIcon:hover {
-  color: #C01F02;
+  color: #c01f02;
+}
+
+@media (max-width: 480px) {
+  .cart {
+    padding-left: 0rem;
+    padding-right: 0rem;
+    /* font-size: 14px; */
+  }
+  .cart thead th:nth-child(1) {
+    width: 30%;
+    text-align: left;
+  }
+  .cart thead th:nth-child(2) {
+    width: 17.5%;
+    text-align: right;
+  }
+  .cart thead th:nth-child(3) {
+    width: 27.5%;
+    text-align: right;
+  }
+  .cart thead th:nth-child(4) {
+    width: 27.5%;
+    text-align: right;
+  }
+  .cart thead th:nth-child(5) {
+    width: 17.5%;
+    text-align: right;
+  }
+}
+
+@media (max-width: 350px) {
+  .cart {
+    font-size: 14px;
+  }
 }

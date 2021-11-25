@@ -6,23 +6,25 @@
 }
 
 .middleBlock {
-  /* background: url("https://www.toptal.com/designers/subtlepatterns/patterns/webb.png"); */
   background: url("../../Images/pattern.png");
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: center;
-  align-items: center; */
   margin-top: 3.5rem;
   margin-bottom: 1rem;
-
-  /* height: 100%; */
-  width: 700px;
+  max-width: 700px;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
-
-  /* padding: 2rem; */
-  /* padding-top: 2rem;
-  padding-bottom: 2rem; */
   padding: 2rem 5rem 2rem 5rem;
+}
+
+@media (max-width: 1140px) {
+  .middleBlock {
+    padding: 2rem 2rem 2rem 2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .middleBlock {
+    padding: 2rem 1rem 2rem 1rem;
+  }
 }
