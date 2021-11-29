@@ -40,7 +40,7 @@ function Auth(props) {
   const login = (event) => {
     event.preventDefault();
     fetch("http://localhost:3000/api/auth/login", {
-      // fetch("192.168.0.23:3000/api/auth/login", {
+      // fetch("http://192.168.0.23:3000/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

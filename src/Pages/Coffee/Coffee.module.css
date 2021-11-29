@@ -1,12 +1,16 @@
 .coffeePage {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
   overflow: auto;
+
+  margin-left: 14rem;
+  width: calc(100% - 14rem - 0rem);
 }
 
 .coffeeSelection {
   /* margin: 3.5rem 1rem 1rem 15rem; */
+  /* margin-left: 15rem; */
   margin-left: 1rem;
   margin-top: 3.5rem;
   margin-bottom: 1rem;
@@ -15,6 +19,40 @@
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
   grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
   gap: 1rem;
+}
+
+@media (max-width: 1300px) {
+  .coffeePage {
+    margin-left: 12rem;
+    width: calc(100% - 12rem - 0rem);
+  }
+}
+
+@media (max-width: 1140px) {
+  .coffeePage {
+    margin-left: 10rem;
+    width: calc(100% - 10rem - 0rem);
+  }
+}
+
+@media (max-width: 970px) {
+  .coffeePage {
+    margin-left: 0rem;
+    width: 100%;
+  }
+
+  .banner {
+    background-color: #232323;
+    margin-top: 2.5rem;
+    padding: 0.5rem;
+    margin-bottom: -2.5rem;
+  }
+}
+
+@media (min-width: 971px) {
+  .banner {
+    display: none;
+  }
 }
 
 /* .loading {

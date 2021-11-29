@@ -7,8 +7,12 @@ function UserProvider({ children }) {
 
   const getUser = () => {
     fetch("http://localhost:3000/api/auth/currentuser", {
+      // fetch("http://192.168.0.23:3000/api/auth/currentuser", {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        // "Content-Type": "text/plain",
+      },
       credentials: "include",
     })
       .then((res) => res.json())

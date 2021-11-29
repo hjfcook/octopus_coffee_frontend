@@ -31,6 +31,7 @@ function Header(props) {
 
   const logout = () => {
     fetch("http://localhost:3000/api/auth/logout", {
+      // fetch("http://192.168.0.23:3000/api/auth/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -56,7 +57,7 @@ function Header(props) {
       </div>
       <nav className={styles.header}>
         <ul>
-          {props.filterOptions ? (
+          {props.filterOptions && hidden ? (
             <Dropdown
               name="view"
               sortOptions={props.filterOptions}
@@ -64,7 +65,7 @@ function Header(props) {
               level="top"
             />
           ) : null}
-          {props.sortOptions ? (
+          {props.sortOptions && hidden ? (
             <Dropdown
               name="sort"
               sortOptions={props.sortOptions}

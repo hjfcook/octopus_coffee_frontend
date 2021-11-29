@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import useCoffee from "../../Hooks/useCoffee";
+import logo from "../../Images/logo.png";
 
 function CoffeePage() {
   // const [
@@ -99,6 +100,9 @@ function CoffeePage() {
 
   return (
     <div className={styles.coffeePage}>
+      <div className={styles.banner}>
+        <img src={logo} alt="Octopus Coffee Roasters" width="130"></img>
+      </div>
       <Switch>
         <Route exact path="/coffee">
           <Header sortOptions={sortOptions} filterOptions={filterOptions} />

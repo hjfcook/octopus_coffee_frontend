@@ -20,6 +20,9 @@ function MenuLink({ label, to, activeOnlyWhenExact }) {
 
 function Navbar() {
   const [hidden, setHidden] = useState(true);
+  const hide = () => {
+    if (!hidden) setHidden(true);
+  };
 
   return (
     <>
@@ -35,26 +38,26 @@ function Navbar() {
         <img src={logo} alt="Octopus Coffee Roasters" width="130"></img>
         <nav>
           <ul>
-            <li>
+            <li onClick={hide}>
               <MenuLink
                 activeOnlyWhenExact={true}
                 to="/coffee"
                 label="coffee"
               />
             </li>
-            <li>
+            <li onClick={hide}>
               <MenuLink to="/subscriptions" label="subscriptions" />
             </li>
-            <li>
+            <li onClick={hide}>
               <MenuLink to="/equipment" label="equipment" />
             </li>
-            <li>
+            <li onClick={hide}>
               <MenuLink to="/merchandise" label="merchandise" />
             </li>
-            <li>
+            <li onClick={hide}>
               <MenuLink to="/shipping" label="shipping" />
             </li>
-            <li>
+            <li onClick={hide}>
               <MenuLink to="/about" label="about" />
             </li>
           </ul>

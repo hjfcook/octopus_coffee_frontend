@@ -1,8 +1,12 @@
 .page {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  /* width: 100%; */
+  margin-left: 14rem;
+  width: calc(100% - 14rem);
   overflow: auto;
+  /* border: 1px solid black; */
+  height: 100vh;
 }
 
 .middleBlock {
@@ -17,14 +21,41 @@
   padding: 2rem 5rem 2rem 5rem;
 }
 
+@media (max-width: 1300px) {
+  .page {
+    margin-left: 12rem;
+    width: calc(100% - 12rem);
+  }
+}
+
 @media (max-width: 1140px) {
+  .page {
+    margin-left: 10rem;
+    width: calc(100% - 10rem);
+  }
   .middleBlock {
     padding: 2rem 2rem 2rem 2rem;
   }
 }
 
+@media (max-width: 970px) {
+  .page {
+    margin-left: 0rem;
+    width: 100%;
+  }
+}
+
 @media (max-width: 700px) {
   .middleBlock {
-    padding: 2rem 1rem 2rem 1rem;
+    padding: 1rem 1rem 2rem 1rem;
+  }
+  .middleBlock h1 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 450px) {
+  .middleBlock {
+    margin-top: 2.7rem;
   }
 }

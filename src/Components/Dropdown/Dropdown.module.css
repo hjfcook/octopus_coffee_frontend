@@ -21,6 +21,8 @@
   margin: 0;
   text-align: left;
   padding-left: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
 }
 
 .dropdown button:hover {
@@ -31,9 +33,6 @@
 .test {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
-
-
-
 
 .dropdownItem {
   background-color: white;

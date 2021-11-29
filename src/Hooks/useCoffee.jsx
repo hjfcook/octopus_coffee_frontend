@@ -8,10 +8,12 @@ function useCoffee() {
 
   const fetchData = useCallback(async () => {
     setIsLoading(true);
-    // const dataRead = await (await fetch('http://localhost:3000/api/coffee')).json();
     const dataRead = await (
-      await fetch("http://192.168.0.23:3000/api/coffee")
+      await fetch("http://localhost:3000/api/coffee")
     ).json();
+    // const dataRead = await (
+    //   await fetch("http://192.168.0.23:3000/api/coffee")
+    // ).json();
     setIsLoading(false);
     if (dataRead.status === "success") {
       setCoffeeProducts(dataRead.data);
