@@ -44,8 +44,11 @@
 }
 
 @media (max-width: 380px) {
+  .form {
+    margin-top: 4rem;
+  }
   .form input {
-    width: 280px;
+    width: 260px;
   }
 }
 

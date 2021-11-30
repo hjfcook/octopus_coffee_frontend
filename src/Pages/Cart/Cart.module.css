@@ -127,15 +127,15 @@
     text-align: right;
   }
   .cart thead th:nth-child(3) {
-    width: 27.5%;
+    width: 30%;
     text-align: right;
   }
   .cart thead th:nth-child(4) {
-    width: 27.5%;
+    width: 30%;
     text-align: right;
   }
   .cart thead th:nth-child(5) {
-    width: 17.5%;
+    width: 12.5%;
     text-align: right;
   }
 }
