@@ -100,12 +100,12 @@ function CoffeePage() {
 
   return (
     <div className={styles.coffeePage}>
-      <div className={styles.banner}>
-        <img src={logo} alt="Octopus Coffee Roasters" width="130"></img>
-      </div>
       <Switch>
         <Route exact path="/coffee">
           <Header sortOptions={sortOptions} filterOptions={filterOptions} />
+          <div className={styles.banner}>
+            <img src={logo} alt="Octopus Coffee Roasters" width="130"></img>
+          </div>
           <div className={styles.coffeeSelection}>
             {isLoading ? (
               <div className={styles.loading}>loading...</div>

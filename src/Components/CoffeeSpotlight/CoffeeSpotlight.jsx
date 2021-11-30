@@ -19,13 +19,22 @@ function CoffeeSpotlight(props) {
     <div className={styles.coffeeSpotlight}>
       <div className={styles.topBlock}>
         {/* <img src='https://images.unsplash.com/photo-1515471897120-85416077e011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxfDB8MXxhbGx8fHx8fHx8fA&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit' alt='coffee beans in a bag'/> */}
-        <img src={coffeeImage} alt="coffee beans in a bag" />
+        <img
+          className={styles.desktopImage}
+          src={coffeeImage}
+          alt="coffee beans in a bag"
+        />
         <div className={styles.rightSection}>
           <div>
             <h1>{props.coffee.name}</h1>
             <h2>{props.coffee.country}</h2>
             <h4>{props.coffee.descriptors.join(", ")}</h4>
           </div>
+          <img
+            className={styles.mobileImage}
+            src={coffeeImage}
+            alt="coffee beans in a bag"
+          />
           <div>
             <p>Process: {props.coffee.process}</p>
             <p>Roast: {props.coffee.roast}</p>
