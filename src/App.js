@@ -14,6 +14,7 @@ import CartPage from "./Pages/Cart/Cart";
 import Account from "./Pages/Account/Account";
 import Admin from "./Pages/Admin/Admin";
 import Auth from "./Pages/Auth/Auth";
+import OrderConfirmation from "./Pages/OrderConfirmation/OrderConfirmation";
 
 import { UserProvider } from "./Contexts/UserContext";
 import { CartProvider } from "./Contexts/CartContext";
@@ -73,6 +74,9 @@ function App() {
               </Route>
               <Route path="/admin">
                 <Admin />
+              </Route>
+              <Route path="/order-confirmation">
+                <OrderConfirmation />
               </Route>
               <Route path="*">
                 <Redirect to="/coffee" />
