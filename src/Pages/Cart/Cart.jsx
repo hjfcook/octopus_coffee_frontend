@@ -90,6 +90,7 @@ function CartPage() {
               body: JSON.stringify({
                 cart: cartContext.cart,
               }),
+              credentials: "include",
             })
               .then((res) => res.json())
               .then((session) => {

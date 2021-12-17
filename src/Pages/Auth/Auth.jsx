@@ -75,26 +75,6 @@ function Auth(props) {
         className={styles.form}
       >
         <fieldset>
-          {props.type === "register" ? (
-            <>
-              <label htmlFor="first-name">First name:</label>
-              <input
-                name="first-name"
-                placeholder="first name"
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-              />
-              <label htmlFor="last-name">Last name:</label>
-              <input
-                name="last-name"
-                placeholder="last name"
-                onChange={(e) => setLastName(e.target.value)}
-                required
-              />
-            </>
-          ) : (
-            <></>
-          )}
           <label htmlFor="email">Email address:</label>
           <input
             name="email"
@@ -114,6 +94,28 @@ function Auth(props) {
             }
             required
           />
+          {props.type === "register" ? (
+            <>
+              <label htmlFor="first-name">First name:</label>
+              <input
+                name="first-name"
+                placeholder="first name"
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+              <label htmlFor="last-name">Last name:</label>
+              <input
+                name="last-name"
+                placeholder="last name"
+                onChange={(e) => setLastName(e.target.value)}
+                required
+              />
+              <label htmlFor="address">Address:</label>
+              <textarea name="address" placeholder="address" required />
+            </>
+          ) : (
+            <></>
+          )}
         </fieldset>
       </form>
       <div className={styles.buttonDiv}>

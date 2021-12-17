@@ -27,6 +27,7 @@ function Account() {
         <>
           <h3>{`${userContext.user.firstName} ${userContext.user.lastName}`}</h3>
           <h3>{`${userContext.user.email}`}</h3>
+          <p>{`${userContext.user.address}`}</p>
         </>
       ) : (
         <></>
